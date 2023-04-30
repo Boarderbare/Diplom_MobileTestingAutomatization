@@ -5,14 +5,19 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.RootMatchers.isDialog;
 import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.supportsInputMethods;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
+
+import static ru.netology.data.DataHelper.checkMessage;
+import static ru.netology.data.DataHelper.waitUntilVisible;
 
 import android.os.SystemClock;
 
@@ -38,8 +43,8 @@ import ru.netology.pages.PageAuth;
 
 public class AuthTest {
     PageAuth pageAuth = new PageAuth();
-    DataHelper dataHelper = new DataHelper();
     MainScreenPage mainScreenPage = new MainScreenPage();
+
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
@@ -70,9 +75,9 @@ public class AuthTest {
         pageAuth.enterLogin(DataHelper.AuthInfo.emptyLogin().getLogin());
         pageAuth.enterPassword(DataHelper.AuthInfo.validAuth().getPass());
         pageAuth.signIn();
-        pageAuth.checkEmptyMessage();
-        onView(withText(R.string.empty_login_or_password)).inRoot(new DataHelper.ToastMatcher()).
+        onView(withHint(R.string.empty_login_or_password)).inRoot(isDialog()).
                 check(matches(isDisplayed()));
+//      waitUntilVisible(checkMessage(R.string.empty_login_or_password, true));
 
     }
 //    @Test

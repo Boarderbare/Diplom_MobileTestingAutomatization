@@ -12,12 +12,14 @@ import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibilit
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.not;
 
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -43,6 +45,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeoutException;
 
 //import io.bloco.faker.Faker;
@@ -99,9 +102,21 @@ public class DataHelper {
         }
     }
 
-    public ViewInteraction checkMessage(int id) {
+    public static  ViewInteraction emptyToast(int id) {
         return onView(withText(id)).inRoot(new ToastMatcher());
     }
+
+
+
+    public static View checkMessage(int id, boolean visible) {
+        if (visible) {
+            emptyToast(id).check(matches(isDisplayed()));
+        } else {
+            emptyToast(id).check(matches(not(isDisplayed())));
+        }
+    return null;
+    }
+
     public static class ToastMatcher extends TypeSafeMatcher<Root> {
 
         @Override
@@ -112,7 +127,7 @@ public class DataHelper {
         @Override
         public boolean matchesSafely(Root root) {
             int type = root.getWindowLayoutParams().get().type;
-            if (type == WindowManager.LayoutParams.TYPE_TOAST) {
+            if ((type == WindowManager.LayoutParams.TYPE_TOAST)) {
                 IBinder windowToken = root.getDecorView().getWindowToken();
                 IBinder appToken = root.getDecorView().getApplicationWindowToken();
                 if (windowToken == appToken) {
@@ -120,6 +135,24 @@ public class DataHelper {
                 }
             }
             return false;
+        }
+    }
+
+    public static void waitUntilVisible(View view) {
+        final CountDownLatch latch = new CountDownLatch(1);
+        ViewTreeObserver observer = view.getViewTreeObserver();
+        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (view.isShown()) {
+                    latch.countDown();
+                }
+            }
+        });
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
     public  static void elementWaiting(Matcher matcher, int millis) {

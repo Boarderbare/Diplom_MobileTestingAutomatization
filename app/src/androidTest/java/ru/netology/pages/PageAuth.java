@@ -62,10 +62,10 @@ public class PageAuth {
        signButton.perform(click());
     }
 
-    public void checkEmptyMessage() {
-        dataHelper.checkMessage(massageIdEmptyAuth).check(matches(isDisplayed()));
+//    public void checkEmptyMessage() {
+//        dataHelper.checkMessage(massageIdEmptyAuth).check(matches(isDisplayed()));
 
-    }
+//    }
 
 
 }

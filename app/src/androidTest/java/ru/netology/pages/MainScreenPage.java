@@ -8,12 +8,14 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.supportsInputMethods;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
 
 import android.view.View;
 
@@ -45,18 +47,17 @@ public class MainScreenPage {
     // news
     public ViewInteraction news = onView(withText("News"));
     public ViewInteraction newsUnit = onView(withId(R.id.news_list_recycler_view));
-    public ViewInteraction allNewsButtonn = onView(withId(R.id.all_news_text_view));
+    public ViewInteraction allNewsButton = onView(withId(R.id.all_news_text_view));
     public ViewInteraction expandSingleNews = onView(allOf(withId(R.id.news_list_recycler_view),
             childAtPosition(withId(R.id.all_news_cards_block_constraint_layout), 0)));
     public ViewInteraction unitNewsButton = onView(
-            allOf(
-                    withId(R.id.expand_material_button),
+            allOf(withId(R.id.expand_material_button),
                     childAtPosition(
-                            childAtPosition(
-                                    withId(R.id.container_list_claim_include_on_fragment_main),
-                                    0
-                            ), 4
-                    )));
+                            withClassName(is("android.widget.LinearLayout")), childAtPosition(
+                                    withClassName(is("android.widget.LinearLayout")),
+                                        withId(R.id.container_list_news_include_on_fragment_main),
+                                    0),
+                            4)));
 
     // Claims
     public ViewInteraction claims = onView(withText("Claims"));
@@ -66,14 +67,13 @@ public class MainScreenPage {
             childAtPosition(withId(R.id.all_claims_cards_block_constraint_layout), 4)));
     public ViewInteraction newClaimButtonn = onView(withId(R.id.add_new_claim_material_button));
     public ViewInteraction unitClaimsButton = onView(
-            allOf(
-                    withId(R.id.expand_material_button),
+            allOf(withId(R.id.expand_material_button),
                     childAtPosition(
-                            childAtPosition(
-                                    withId(R.id.container_list_claim_include_on_fragment_main),
-                                    0
-                            ), 3
-                    )));
+                            withClassName(is("android.widget.LinearLayout")), childAtPosition(
+                                    withClassName(is("android.widget.LinearLayout")),
+                                        withId(R.id.container_list_claim_include_on_fragment_main),
+                                    0),
+                            3)));
 
 //    public ViewInteraction claimList = onView(
 //            allOf(withId(R.id.claim_list_recycler_view),

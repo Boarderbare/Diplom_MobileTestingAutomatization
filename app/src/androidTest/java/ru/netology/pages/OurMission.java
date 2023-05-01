@@ -20,13 +20,13 @@ public class OurMission {
     public ViewInteraction listOfItems = onView(withId(R.id.our_mission_item_list_recycler_view));
 
     public void checkOurMissionScreenLoaded() {
-            elementWaiting(withText("Love is all"), 5000);
-        }
+        elementWaiting(withText("Love is all"), 5000);
+    }
 
-        public  void isOurMissiionScreen() {
-            screenName.check(matches(isDisplayed()));
-            listOfItems.check(matches(isDisplayed()));
-        }
+    public void isOurMissiionScreen() {
+        screenName.check(matches(isDisplayed()));
+        listOfItems.check(matches(isDisplayed()));
+    }
 
     public void signIn() {
 

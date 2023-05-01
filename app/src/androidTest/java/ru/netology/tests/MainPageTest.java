@@ -14,6 +14,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 
 import static ru.netology.data.DataHelper.checkMessage;
 import android.os.SystemClock;
@@ -69,14 +70,65 @@ public class MainPageTest {
     public void testOpenOurMission() {
         mainScreenPage.ourMissionButton.check(matches(isDisplayed()));
         mainScreenPage.ourMissionButton.perform(click());
+        ourMission.checkOurMissionScreenLoaded();
         ourMission.isOurMissiionScreen();
     }
     @Test
     @DisplayName("9.Отображение и открытие \"Profile'")
     public void testOpenProfile() {
-        mainScreenPage.ourMissionButton.check(matches(isDisplayed()));
-        mainScreenPage.ourMissionButton.perform(click());
-        ourMission.isOurMissiionScreen();
+        mainScreenPage.logOutButton.check(matches(isDisplayed()));
+        mainScreenPage.logOutButton.perform(click());
+        mainScreenPage.logOut.check(matches(isDisplayed()));
+    }
+    @Test
+    @DisplayName("10.Отображение и открытие Menu")
+    public void testOpenMenu() {
+        mainScreenPage.menuButton.check(matches(isDisplayed()));
+        mainScreenPage.menuButton.perform(click());
+        mainScreenPage.menuMain.check(matches(isDisplayed()));
+        mainScreenPage.menuNews.check(matches(isDisplayed()));
+        mainScreenPage.menuClaims.check(matches(isDisplayed()));
+        mainScreenPage.menuAbout.check(matches(isDisplayed()));
+    }
+    @Test
+    @DisplayName("11.News: свернуть, развернуть")
+    public void testOpenClseUnitNews() {
+        mainScreenPage.unitNewsButton.check(matches(isDisplayed()));
+        mainScreenPage.unitNewsButton.perform(click());
+        mainScreenPage.allNewsButton.check(matches(not(isDisplayed())));
+        mainScreenPage.unitNewsButton.perform(click());
+        mainScreenPage.allNewsButton.check(matches(isDisplayed()));
+    }
+    @Test
+    @DisplayName("12.News: развернуть новость")
+    public void testOpenNews() {
+    }
+    @Test
+    @DisplayName("13.News: переход в All news")
+    public void testToAllNews() {
+
     }
 
+    @Test
+    @DisplayName("14.Claims: свернуть, развернуть")
+    public void testOpenCloseUnitClaim() {
+        mainScreenPage.unitClaimsButton.check(matches(isDisplayed()));
+        mainScreenPage.unitClaimsButton.perform(click());
+        mainScreenPage.allClaimsButton.check(matches(not(isDisplayed())));
+        mainScreenPage.unitClaimsButton.perform(click());
+        mainScreenPage.allClaimsButton.check(matches(isDisplayed()));
+    }
+
+    @Test
+    @DisplayName("15.Claims: развернуть отзыв")
+    public void testOpenClaim() {
+    }
+    @Test
+    @DisplayName("16.Claims:  переход в All claims")
+    public void testToAllCaims() {
+    }
+    @Test
+    @DisplayName("17.Claims: добавить новый отзыв")
+    public void testAddNewClaim() {
+    }
 }

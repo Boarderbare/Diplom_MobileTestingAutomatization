@@ -4,6 +4,7 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.swipeUp;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 //import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
+import static androidx.test.espresso.matcher.RootMatchers.isPlatformPopup;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -127,7 +128,7 @@ public class DataHelper {
         @Override
         public boolean matchesSafely(Root root) {
             int type = root.getWindowLayoutParams().get().type;
-            if ((type == WindowManager.LayoutParams.TYPE_TOAST)) {
+            if (type == WindowManager.LayoutParams.TYPE_TOAST) {
                 IBinder windowToken = root.getDecorView().getWindowToken();
                 IBinder appToken = root.getDecorView().getApplicationWindowToken();
                 if (windowToken == appToken) {
@@ -138,25 +139,156 @@ public class DataHelper {
         }
     }
 
-    public static void waitUntilVisible(View view) {
-        final CountDownLatch latch = new CountDownLatch(1);
-        ViewTreeObserver observer = view.getViewTreeObserver();
-        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+//public static Matcher<Root> isPopupWindow() {
+//    return isPlatformPopup();
+//}
+public static Matcher<View> childAtPosition(
+        final Matcher<View> parentMatcher, final int position) {
+
+    return new TypeSafeMatcher<View>() {
+        @Override
+        public void describeTo(Description description) {
+            description.appendText("Child at position " + position + " in parent ");
+            parentMatcher.describeTo(description);
+        }
+
+        @Override
+        public boolean matchesSafely(View view) {
+            ViewParent parent = view.getParent();
+            return parent instanceof ViewGroup && parentMatcher.matches(parent)
+                    && view.equals(((ViewGroup) parent).getChildAt(position));
+        }
+    };
+}
+    public static Matcher<View> childAtPosition(Matcher<View> matcher, final Matcher<View> parentMatcher, final int position) {
+
+        return new TypeSafeMatcher<View>() {
             @Override
-            public void onGlobalLayout() {
-                if (view.isShown()) {
-                    latch.countDown();
-                }
+            public void describeTo(Description description) {
+                description.appendText("Child at position " + position + " in parent ");
+                parentMatcher.describeTo(description);
             }
-        });
-        try {
-            latch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+            @Override
+            public boolean matchesSafely(View view) {
+                ViewParent parent = view.getParent();
+                return parent instanceof ViewGroup && parentMatcher.matches(parent)
+                        && view.equals(((ViewGroup) parent).getChildAt(position));
+            }
+        };
+    }
+    public static Matcher<View> withIndex(final Matcher<View> matcher, final int index) {
+        return new TypeSafeMatcher<View>() {
+            int currentIndex = 0;
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("with index: ");
+                description.appendValue(index);
+                matcher.describeTo(description);
+            }
+
+            @Override
+            public boolean matchesSafely(View view) {
+                return matcher.matches(view) && currentIndex++ == index;
+            }
+        };
+    }
+
+
+    private static View findFirstParentLayoutOfClass(View view) {
+        ViewParent parent = new FrameLayout(view.getContext());
+        ViewParent incrementView = null;
+        int i = 0;
+        while (parent != null && !(parent.getClass() == NestedScrollView.class)) {
+            if (i == 0) {
+                parent = findParent(view);
+            } else {
+                parent = findParent(incrementView);
+            }
+            incrementView = parent;
+            i++;
+        }
+        return (View) parent;
+    }
+
+    private static ViewParent findParent(View view) {
+        return view.getParent();
+    }
+
+    private static ViewParent findParent(ViewParent view) {
+        return view.getParent();
+    }
+
+    public static class Text {
+
+        public static String getText(ViewInteraction matcher) {
+            final String[] text = new String[1];
+            ViewAction viewAction = new ViewAction() {
+
+                @Override
+                public Matcher<View> getConstraints() {
+                    return isAssignableFrom(TextView.class);
+                }
+
+                @Override
+                public String getDescription() {
+                    return "Text of the view";
+                }
+
+                @Override
+                public void perform(UiController uiController, View view) {
+                    TextView textView = (TextView) view;
+                    text[0] = textView.getText().toString();
+                }
+            };
+
+            matcher.perform(viewAction);
+
+            return text[0];
         }
     }
-    public  static void elementWaiting(Matcher matcher, int millis) {
-        onView(isRoot()).perform(waitForElement(matcher, millis));
+
+    public static ViewAction waitId(final int viewId, final long millis) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return isRoot();
+            }
+
+            @Override
+            public String getDescription() {
+                return "wait for a specific view with id <" + viewId + "> during " + millis + " millis.";
+            }
+
+            @Override
+            public void perform(final UiController uiController, final View view) {
+                uiController.loopMainThreadUntilIdle();
+                final long startTime = System.currentTimeMillis();
+                final long endTime = startTime + millis;
+                final Matcher<View> viewMatcher = withId(viewId);
+
+                do {
+                    for (View child : TreeIterables.breadthFirstViewTraversal(view)) {
+                        // found view with required ID
+                        if (viewMatcher.matches(child)) {
+                            return;
+                        }
+                    }
+
+                    uiController.loopMainThreadForAtLeast(50);
+                }
+                while (System.currentTimeMillis() < endTime);
+
+                // timeout happens
+                throw new PerformException.Builder()
+                        .withActionDescription(this.getDescription())
+                        .withViewDescription(HumanReadables.describe(view))
+                        .withCause(new TimeoutException())
+                        .build();
+            }
+        };
     }
 
     public static ViewAction waitForElement(final Matcher matcher, final long millis) {
@@ -205,40 +337,44 @@ public class DataHelper {
 
     }
 
-//    public static ViewAction waitFor(final long millis) {
-//        return new ViewAction() {
+    public static void elementWaiting(Matcher matcher, int millis) {
+        onView(isRoot()).perform(waitForElement(matcher, millis));
+    }
+
+    public static ViewAction waitFor(final long millis) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return isRoot();
+            }
+
+            @Override
+            public String getDescription() {
+                return "Wait for " + millis + " milliseconds.";
+            }
+
+            @Override
+            public void perform(UiController uiController, final View view) {
+                uiController.loopMainThreadForAtLeast(millis);
+            }
+        };
+    }
+//    public static void waitUntilVisible(View view) {
+//        final CountDownLatch latch = new CountDownLatch(1);
+//        ViewTreeObserver observer = view.getViewTreeObserver();
+//        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 //            @Override
-//            public Matcher<View> getConstraints() {
-//                return isRoot();
+//            public void onGlobalLayout() {
+//                if (view.isShown()) {
+//                    latch.countDown();
+//                }
 //            }
-//
-//            @Override
-//            public String getDescription() {
-//                return "Wait for " + millis + " milliseconds.";
-//            }
-//
-//            @Override
-//            public void perform(UiController uiController, final View view) {
-//                uiController.loopMainThreadForAtLeast(millis);
-//            }
-//        };
+//        });
+//        try {
+//            latch.await();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 //    }
-public static Matcher<View> childAtPosition(
-        final Matcher<View> parentMatcher, final int position) {
 
-    return new TypeSafeMatcher<View>() {
-        @Override
-        public void describeTo(Description description) {
-            description.appendText("Child at position " + position + " in parent ");
-            parentMatcher.describeTo(description);
-        }
-
-        @Override
-        public boolean matchesSafely(View view) {
-            ViewParent parent = view.getParent();
-            return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                    && view.equals(((ViewGroup) parent).getChildAt(position));
-        }
-    };
-}
 }

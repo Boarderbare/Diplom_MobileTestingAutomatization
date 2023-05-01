@@ -86,7 +86,6 @@ public class MainScreenPage {
         }
 
         public void isMainScreen() {
-
             tradeMark.check(matches(isDisplayed()));
             news.check(matches(isDisplayed()));
             newsUnit.check(matches(isDisplayed()));
@@ -100,4 +99,7 @@ public class MainScreenPage {
         logOut.perform(click());
     }
 
+    public void ourMissionButton() {
+        ourMissionButton.perform(click());
+    }
 }

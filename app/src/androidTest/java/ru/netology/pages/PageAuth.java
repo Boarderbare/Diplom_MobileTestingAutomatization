@@ -38,7 +38,7 @@ public class PageAuth {
 
    int massageIdWrongAuth = R.string.wrong_login_or_password;
    int massageIdEmptyAuth = R.string.empty_login_or_password;
-
+   MainScreenPage mainScreenPage = new MainScreenPage();
 
    public void checkLoadScreen(){
        elementWaiting(withId(R.id.enter_button), 5000);
@@ -48,6 +48,14 @@ public class PageAuth {
         loginField.check(matches(isDisplayed()));
         passField.check(matches(isDisplayed()));
         signButton.check(matches(isDisplayed()));
+    }
+
+    public void login(){
+        enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
+        enterPassword(DataHelper.AuthInfo.validAuth().getPass());
+        signIn();
+        mainScreenPage.checkMainScreenLoaded();
+        mainScreenPage.isMainScreen();
     }
 
     public void enterLogin(String info) {
@@ -65,10 +73,10 @@ public class PageAuth {
 //    public void checkEmptyMessage() {
 //        dataHelper.checkMessage(massageIdEmptyAuth).check(matches(isDisplayed()));
 
-//    }
+    }
 
 
-}
+
 
 
 

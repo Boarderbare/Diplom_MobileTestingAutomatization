@@ -17,8 +17,6 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
 import static ru.netology.data.DataHelper.checkMessage;
-import static ru.netology.data.DataHelper.waitUntilVisible;
-
 import android.os.SystemClock;
 
 import androidx.test.espresso.ViewInteraction;
@@ -48,20 +46,21 @@ public class AuthTest {
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
+
     @Before
     public void readyScreen() {
-            SystemClock.sleep(8000);
-            try {
-                pageAuth.checkLoadScreen();
-                pageAuth.isAuthScreen();
-            } catch (Exception e) {
-                mainScreenPage.logOut();
-                pageAuth.isAuthScreen();
-            }
+        SystemClock.sleep(8000);
+        try {
+            pageAuth.checkLoadScreen();
+            pageAuth.isAuthScreen();
+        } catch (Exception e) {
+            mainScreenPage.logOut();
+            pageAuth.isAuthScreen();
         }
+    }
 
     @Test
-    @DisplayName("Вход в личный кабинет с валидными данными")
+    @DisplayName("2.Вход в личный кабинет с валидными данными")
     public void testAuthRight() {
         pageAuth.enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
         pageAuth.enterPassword(DataHelper.AuthInfo.validAuth().getPass());
@@ -69,19 +68,19 @@ public class AuthTest {
         mainScreenPage.checkMainScreenLoaded();
         mainScreenPage.isMainScreen();
     }
+
     @Test
-    @DisplayName("Вход в личный кабинет с пустым логином")
+    @DisplayName("3.Вход в личный кабинет с пустым логином")
     public void testAuthEmptyLogin() {
         pageAuth.enterLogin(DataHelper.AuthInfo.emptyLogin().getLogin());
         pageAuth.enterPassword(DataHelper.AuthInfo.validAuth().getPass());
         pageAuth.signIn();
-        onView(withHint(R.string.empty_login_or_password)).inRoot(isDialog()).
-                check(matches(isDisplayed()));
-//      waitUntilVisible(checkMessage(R.string.empty_login_or_password, true));
-
+//        onView(withHint(R.string.empty_login_or_password)).inRoot(isPopupWindow()).
+//                check(matches(isDisplayed()));
+        checkMessage(R.string.empty_login_or_password, true);
     }
 //    @Test
-//    @DisplayName("Вход в личный кабинет с пустым паролем")
+//    @DisplayName("4.Вход в личный кабинет с пустым паролем")
 //    public void testAuthEmptyPassword() {
 //        pageAuth.enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
 //        pageAuth.enterPassword(DataHelper.AuthInfo.emptyPassword().getPass());
@@ -90,7 +89,7 @@ public class AuthTest {
 //        mainScreenPage.isMainScreen();
 //    }
 //    @Test
-//    @DisplayName("Вход в личный кабинет с неверным логином")
+//    @DisplayName("5.Вход в личный кабинет с неверным логином")
 //    public void testAuthInvalidLogin() {
 //        pageAuth.enterLogin(DataHelper.AuthInfo.wrongLogin().getLogin());
 //        pageAuth.enterPassword(DataHelper.AuthInfo.validAuth().getPass());
@@ -99,12 +98,23 @@ public class AuthTest {
 //        mainScreenPage.isMainScreen();
 //    }
 //    @Test
-//    @DisplayName("Вход в личный кабинет с неверным паролем")
+//    @DisplayName("6.Вход в личный кабинет с неверным паролем")
 //    public void testAuthInvalidPassword() {
 //        pageAuth.enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
 //        pageAuth.enterPassword(DataHelper.AuthInfo.wrongPassword().getPass());
 //        pageAuth.signIn();
 //        mainScreenPage.checkMainScreenLoaded();
 //        mainScreenPage.isMainScreen();
-    }
 
+    @Test
+    @DisplayName("7.Выход из личного кабинета")
+    public void testAuthInvalidPassword() {
+        pageAuth.enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
+        pageAuth.enterPassword(DataHelper.AuthInfo.validAuth().getPass());
+        pageAuth.signIn();
+        mainScreenPage.checkMainScreenLoaded();
+        mainScreenPage.isMainScreen();
+        mainScreenPage.logOut();
+        pageAuth.isAuthScreen();
+    }
+}

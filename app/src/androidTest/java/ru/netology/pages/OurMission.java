@@ -27,9 +27,4 @@ public class OurMission {
         screenName.check(matches(isDisplayed()));
         listOfItems.check(matches(isDisplayed()));
     }
-
-    public void signIn() {
-
-    }
-
 }

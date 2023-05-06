@@ -32,8 +32,5 @@ public class AboutPage {
 //            listOfItems.check(matches(isDisplayed()));
         }
 
-    public void signIn() {
-
-    }
 
 }

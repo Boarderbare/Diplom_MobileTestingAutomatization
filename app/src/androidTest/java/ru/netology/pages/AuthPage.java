@@ -5,9 +5,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.supportsInputMethods;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -15,17 +13,13 @@ import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
-import android.view.View;
-
 import androidx.test.espresso.ViewInteraction;
-
-import org.hamcrest.core.IsInstanceOf;
 
 import ru.iteco.fmhandroid.R;
 import ru.netology.data.DataHelper;
 import static ru.netology.data.DataHelper.*;
 
-public class PageAuth {
+public class AuthPage {
    DataHelper dataHelper = new DataHelper();
    ViewInteraction screenName =
            onView(allOf( withText("Authorization"), withParent(withParent(withId(R.id.nav_host_fragment)))));

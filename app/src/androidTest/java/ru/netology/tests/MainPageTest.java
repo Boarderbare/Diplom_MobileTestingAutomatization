@@ -37,17 +37,17 @@ import ru.netology.pages.ClaimsPage;
 import ru.netology.pages.CreateClaimPage;
 import ru.netology.pages.MainScreenPage;
 import ru.netology.pages.NewsPage;
-import ru.netology.pages.OurMission;
-import ru.netology.pages.PageAuth;
+import ru.netology.pages.OurMissionPage;
+import ru.netology.pages.AuthPage;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 
 public class MainPageTest {
 
-    OurMission ourMission = new OurMission();
+    OurMissionPage ourMission = new OurMissionPage();
     MainScreenPage mainScreenPage = new MainScreenPage();
-    PageAuth pageAuth = new PageAuth();
+    AuthPage pageAuth = new AuthPage();
     NewsPage newsPage = new NewsPage();
     ClaimPage claimPage = new ClaimPage();
     ClaimsPage claimsPage = new ClaimsPage();

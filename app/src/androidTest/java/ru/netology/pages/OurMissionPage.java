@@ -14,7 +14,7 @@ import androidx.test.espresso.ViewInteraction;
 
 import ru.iteco.fmhandroid.R;
 
-public class OurMission {
+public class OurMissionPage {
 
     public ViewInteraction screenName = onView((withId(R.id.our_mission_title_text_view)));
     public ViewInteraction listOfItems = onView(withId(R.id.our_mission_item_list_recycler_view));

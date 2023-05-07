@@ -61,7 +61,7 @@ public class AuthPage {
     }
 
     public void signIn() {
-       signButton.perform(click());
+        signButton.perform(click());
     }
 
 //    public void checkEmptyMessage() {

@@ -28,10 +28,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import ru.iteco.fmhandroid.R;
-import ru.iteco.fmhandroid.dto.News;
 import ru.iteco.fmhandroid.ui.AppActivity;
-import ru.netology.data.DataHelper;
+import ru.netology.pages.AboutPage;
 import ru.netology.pages.ClaimPage;
 import ru.netology.pages.ClaimsPage;
 import ru.netology.pages.CreateClaimPage;
@@ -44,7 +42,6 @@ import ru.netology.pages.AuthPage;
 @RunWith(AndroidJUnit4.class)
 
 public class MainPageTest {
-
     OurMissionPage ourMission = new OurMissionPage();
     MainScreenPage mainScreenPage = new MainScreenPage();
     AuthPage pageAuth = new AuthPage();
@@ -52,6 +49,7 @@ public class MainPageTest {
     ClaimPage claimPage = new ClaimPage();
     ClaimsPage claimsPage = new ClaimsPage();
     CreateClaimPage createClaimPage = new CreateClaimPage();
+    AboutPage aboutPage = new AboutPage();
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
@@ -59,7 +57,7 @@ public class MainPageTest {
 
     @Before
     public void readyScreen() {
-        SystemClock.sleep(8000);
+        SystemClock.sleep(5000);
         try {
             mainScreenPage.checkMainScreenLoaded();
         } catch (Exception e) {
@@ -114,7 +112,8 @@ public class MainPageTest {
         mainScreenPage.singleNewsButton.check(matches(isDisplayed()));
         mainScreenPage.singleNewsButton.perform(actionOnItemAtPosition(0, click()));
         mainScreenPage.descriptionNewsIsDisplayed(0);
-//        mainScreenPage.SingleNewsButton.perform(actionOnItemAtPosition(0, click()));
+//        та же кнопка на сернуть не работает
+//        mainScreenPage.singleNewsButton.perform(actionOnItemAtPosition(0, click()));
 //        mainScreenPage.descriptionNewsIsNotDisplayed(0);
     }
 
@@ -158,5 +157,49 @@ public class MainPageTest {
         mainScreenPage.createClaimButton.check(matches(isDisplayed()));
         mainScreenPage.createClaimButton.perform(click());
         createClaimPage.checkCreateClaimScreenLoaded();
+    }
+
+    @Test
+    @DisplayName("18.Menu: перейти в раздел Main")
+    public void testToMain() {
+        mainScreenPage.menuButton.check(matches(isDisplayed()));
+        mainScreenPage.menuButton.perform(click());
+        mainScreenPage.menuClaims.check(matches(isDisplayed()));
+        mainScreenPage.menuClaims.perform(click());
+        claimsPage.checkClaimsScreenLoaded();
+        mainScreenPage.menuButton.check(matches(isDisplayed()));
+        mainScreenPage.menuButton.perform(click());
+        mainScreenPage.menuMain.check(matches(isDisplayed()));
+        mainScreenPage.menuMain.perform(click());
+        mainScreenPage.checkMainScreenLoaded();
+    }
+
+    @Test
+    @DisplayName("19.Menu: перейти в раздел Claims")
+    public void testToClaims() {
+        mainScreenPage.menuButton.check(matches(isDisplayed()));
+        mainScreenPage.menuButton.perform(click());
+        mainScreenPage.menuClaims.check(matches(isDisplayed()));
+        mainScreenPage.menuClaims.perform(click());
+        claimsPage.checkClaimsScreenLoaded();
+    }
+    @Test
+    @DisplayName("20.Menu: перейти в раздел News")
+    public void testToNews() {
+        mainScreenPage.menuButton.check(matches(isDisplayed()));
+        mainScreenPage.menuButton.perform(click());
+        mainScreenPage.menuNews.check(matches(isDisplayed()));
+        mainScreenPage.menuNews.perform(click());
+        newsPage.checkNewsScreenLoaded();
+    }
+
+    @Test
+    @DisplayName("21.Menu: перейти в раздел About")
+    public void testToAbout() {
+        mainScreenPage.menuButton.check(matches(isDisplayed()));
+        mainScreenPage.menuButton.perform(click());
+        mainScreenPage.menuAbout.check(matches(isDisplayed()));
+        mainScreenPage.menuAbout.perform(click());
+        aboutPage.checkAboutScreenLoaded();
     }
 }

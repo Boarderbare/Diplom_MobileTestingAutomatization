@@ -81,6 +81,9 @@ public class MainScreenPage {
 //                            withId(R.id.all_claims_cards_block_constraint_layout),
 //                            4)));
 
+    NewsPage newsPage = new NewsPage();
+    ClaimsPage claimsPage = new ClaimsPage();
+
     public void checkMainScreenLoaded() {
             elementWaiting(withText("News"), 5000);
         }
@@ -97,6 +100,14 @@ public class MainScreenPage {
         logOutButton.perform(click());
         logOut.check(matches(isDisplayed()));
         logOut.perform(click());
+    }
+
+    public void  goToClaims() {
+        menuButton.check(matches(isDisplayed()));
+        menuButton.perform(click());
+        menuClaims.check(matches(isDisplayed()));
+        menuClaims.perform(click());
+        claimsPage.checkClaimsScreenLoaded();
     }
 
     public void ourMissionButton() {

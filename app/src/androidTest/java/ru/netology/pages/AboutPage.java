@@ -21,15 +21,24 @@ public class AboutPage {
     public ViewInteraction termsOfUse = onView(withId(R.id.about_terms_of_use_label_text_view));
     public ViewInteraction termsOfUseLink = onView(withId(R.id.about_privacy_policy_value_text_view));
     public ViewInteraction companyInfo = onView(withId(R.id.about_company_info_label_text_view));
-    public ViewInteraction returnBtn = onView(withId(R.id.about_back_image_button));
+    public ViewInteraction returnButton = onView(withId(R.id.about_back_image_button));
 
     public void checkAboutScreenLoaded() {
-            elementWaiting(withText("Love is all"), 5000);
-        }
+
+        elementWaiting(withText("Version:"), 2000);
+        tradeMarkImage.check(matches(isDisplayed()));
+        version.check(matches(isDisplayed()));
+        versionValue.check(matches(isDisplayed()));
+        privacyPolicy.check(matches(isDisplayed()));
+        privacyPolicyLink.check(matches(isDisplayed()));
+        termsOfUse.check(matches(isDisplayed()));
+        termsOfUseLink.check(matches(isDisplayed()));
+        companyInfo.check(matches(isDisplayed()));
+        returnButton.check(matches(isDisplayed()));
+    }
 
         public  void isOurMissiionScreen() {
-//            screenName.check(matches(isDisplayed()));
-//            listOfItems.check(matches(isDisplayed()));
+
         }
 
 

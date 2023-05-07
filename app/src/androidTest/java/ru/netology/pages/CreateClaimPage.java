@@ -1,6 +1,7 @@
 package ru.netology.pages;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -37,4 +38,9 @@ public class CreateClaimPage {
         saveButton.check(matches(isDisplayed()));
         cancelButton.check(matches(isDisplayed()));
       }
+
+    public void openClaim(int index) {
+//        claimsScreen.claimList(index).perform(click());
+
+    }
 }

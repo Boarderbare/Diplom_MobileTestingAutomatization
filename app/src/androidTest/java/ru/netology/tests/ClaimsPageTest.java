@@ -5,6 +5,8 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertEquals;
+import static ru.netology.data.DataHelper.nestedScrollTo;
 
 import android.os.SystemClock;
 
@@ -66,9 +68,9 @@ public class ClaimsPageTest {
         claimsPage.claimsFilterButton.perform(click());
         filterClaimsWindow.checkFilterScreenLoaded();
         filterClaimsWindow.uncheckOpen();
-//        filterClaimsWindow.uncheckExecuted();
-//        filterClaimsWindow.uncheckCanceled();
         filterClaimsWindow.uncheckInProgress();
+        filterClaimsWindow.uncheckExecuted();
+        filterClaimsWindow.uncheckCanceled();
         filterClaimsWindow.cLickOk();
         claimsPage.emptyClaimList();
     }
@@ -76,24 +78,65 @@ public class ClaimsPageTest {
     @Test
     @DisplayName("23.Выбрать фильтр по статусу  Open")
     public void tesFilterOpen() {
+        claimsPage.claimsFilterButton.check(matches(isDisplayed()));
+        claimsPage.claimsFilterButton.perform(click());
+        filterClaimsWindow.checkFilterScreenLoaded();
+        filterClaimsWindow.checkOpen();
+        filterClaimsWindow.uncheckInProgress();
+        filterClaimsWindow.uncheckExecuted();
+        filterClaimsWindow.uncheckCanceled();
+        filterClaimsWindow.cLickOk();
+        claimsPage.openClaim(0);
+        claimPage.checkClaimScreenLoaded();
+        assertEquals("Open",claimPage.getStatus());
     }
 
     @Test
     @DisplayName("24.Выбрать фильтр по статусу  In progress")
     public void testFilterInProgress() {
-
+        claimsPage.claimsFilterButton.check(matches(isDisplayed()));
+        claimsPage.claimsFilterButton.perform(click());
+        filterClaimsWindow.checkFilterScreenLoaded();
+        filterClaimsWindow.uncheckOpen();
+        filterClaimsWindow.checkInProgress();
+        filterClaimsWindow.uncheckExecuted();
+        filterClaimsWindow.uncheckCanceled();
+        filterClaimsWindow.cLickOk();
+        claimsPage.openClaim(0);
+        claimPage.checkClaimScreenLoaded();
+        assertEquals("In progress",claimPage.getStatus());
     }
 
     @Test
     @DisplayName("25.Выбрать фильтр по статусу Ececuted")
     public void testFilterExecuted() {
-
+        claimsPage.claimsFilterButton.check(matches(isDisplayed()));
+        claimsPage.claimsFilterButton.perform(click());
+        filterClaimsWindow.checkFilterScreenLoaded();
+        filterClaimsWindow.uncheckOpen();
+        filterClaimsWindow.uncheckInProgress();
+        filterClaimsWindow.checkExecuted();
+        filterClaimsWindow.uncheckCanceled();
+        filterClaimsWindow.cLickOk();
+        claimsPage.openClaim(0);
+        claimPage.checkClaimScreenLoaded();
+        assertEquals("Executed",claimPage.getStatus());
     }
 
     @Test
     @DisplayName("26.Выбрать фильтр по статусу  Cancelled")
     public void testFilterCancelled() {
-
+        claimsPage.claimsFilterButton.check(matches(isDisplayed()));
+        claimsPage.claimsFilterButton.perform(click());
+        filterClaimsWindow.checkFilterScreenLoaded();
+        filterClaimsWindow.uncheckOpen();
+        filterClaimsWindow.uncheckInProgress();
+        filterClaimsWindow.uncheckExecuted();
+        filterClaimsWindow.checkCanceled();
+        filterClaimsWindow.cLickOk();
+        claimsPage.openClaim(0);
+        claimPage.checkClaimScreenLoaded();
+        assertEquals("Canceled",claimPage.getStatus());
     }
 
     @Test
@@ -133,21 +176,77 @@ public class ClaimsPageTest {
     @Test
     @DisplayName("32. Взять в работу заявку Open - Take to work")
     public void testToMain() {
-
+        claimsPage.claimsFilterButton.check(matches(isDisplayed()));
+        claimsPage.claimsFilterButton.perform(click());
+        filterClaimsWindow.checkFilterScreenLoaded();
+        filterClaimsWindow.checkOpen();
+        filterClaimsWindow.uncheckInProgress();
+        filterClaimsWindow.uncheckExecuted();
+        filterClaimsWindow.uncheckCanceled();
+        filterClaimsWindow.cLickOk();
+        claimsPage.openClaim(0);
+        claimPage.statusChangeButton.perform(click());
+        claimPage.takeToWork.perform(click());
+        claimPage.checkClaimStatusLoaded();
+        assertEquals("In progress",claimPage.getStatus());
     }
 
     @Test
     @DisplayName("33. Отклонить заявку Open - Cancel")
     public void testToClaims() {
-            }
+        claimsPage.claimsFilterButton.check(matches(isDisplayed()));
+        claimsPage.claimsFilterButton.perform(click());
+        filterClaimsWindow.checkFilterScreenLoaded();
+        filterClaimsWindow.checkOpen();
+        filterClaimsWindow.uncheckInProgress();
+        filterClaimsWindow.uncheckExecuted();
+        filterClaimsWindow.uncheckCanceled();
+        filterClaimsWindow.cLickOk();
+        claimsPage.openClaim(0);
+        claimPage.statusChangeButton.perform(click());
+        claimPage.cancelClaim.perform(click());
+        claimPage.checkClaimStatusLoaded();
+        assertEquals("Canceled",claimPage.getStatus());
+    }
     @Test
     @DisplayName("34. Выполнить заявку In Progress - To execute")
     public void testToNews() {
-            }
+        String comment = "Done";
+        claimsPage.claimsFilterButton.check(matches(isDisplayed()));
+        claimsPage.claimsFilterButton.perform(click());
+        filterClaimsWindow.checkFilterScreenLoaded();
+        filterClaimsWindow.uncheckOpen();
+        filterClaimsWindow.checkInProgress();
+        filterClaimsWindow.uncheckExecuted();
+        filterClaimsWindow.uncheckCanceled();
+        filterClaimsWindow.cLickOk();
+        claimsPage.openClaim(0);
+        claimPage.statusChangeButton.perform(nestedScrollTo());
+        claimPage.statusChangeButton.perform(click());
+        claimPage.toExecuteClaim.perform(click());
+        claimPage.checkCommentFieldLoaded();
+        claimPage.addCommentWhenStatusChange(comment);
+        assertEquals("Executed",claimPage.getStatus());
+    }
 
     @Test
     @DisplayName("35. Отказаться от заявки  (In Progress) - Throw off")
     public void testToAbout() {
-
+        String comment = "Done";
+        claimsPage.claimsFilterButton.check(matches(isDisplayed()));
+        claimsPage.claimsFilterButton.perform(click());
+        filterClaimsWindow.checkFilterScreenLoaded();
+        filterClaimsWindow.uncheckOpen();
+        filterClaimsWindow.checkInProgress();
+        filterClaimsWindow.uncheckExecuted();
+        filterClaimsWindow.uncheckCanceled();
+        filterClaimsWindow.cLickOk();
+        claimsPage.openClaim(0);
+        claimPage.statusChangeButton.perform(nestedScrollTo());
+        claimPage.statusChangeButton.perform(click());
+        claimPage.throwOffClaim.perform(click());
+        claimPage.checkCommentFieldLoaded();
+        claimPage.addCommentWhenStatusChange(comment);
+        assertEquals("Open",claimPage.getStatus());
     }
 }

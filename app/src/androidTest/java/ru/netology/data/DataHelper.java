@@ -139,10 +139,10 @@ public class DataHelper {
         }
     }
 
-
 //public static Matcher<Root> isPopupWindow() {
 //    return isPlatformPopup();
 //}
+
 public static Matcher<View> childAtPosition(
         final Matcher<View> parentMatcher, final int position) {
 
@@ -376,5 +376,41 @@ public static Matcher<View> childAtPosition(
 //            e.printStackTrace();
 //        }
 //    }
+public static ViewAction nestedScrollTo() {
+    return new ViewAction() {
 
+        @Override
+        public Matcher<View> getConstraints() {
+            return allOf(
+                    isDescendantOfA(isAssignableFrom(NestedScrollView.class)),
+                    withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE));
+        }
+
+        @Override
+        public String getDescription() {
+            return "View is not NestedScrollView";
+        }
+
+        @Override
+        public void perform(UiController uiController, View view) {
+            try {
+                NestedScrollView nestedScrollView = (NestedScrollView)
+                        findFirstParentLayoutOfClass(view);
+                if (nestedScrollView != null) {
+                    nestedScrollView.scrollTo(0, view.getTop());
+                } else {
+                    throw new Exception("Unable to find NestedScrollView parent.");
+                }
+            } catch (Exception e) {
+                throw new PerformException.Builder()
+                        .withActionDescription(this.getDescription())
+                        .withViewDescription(HumanReadables.describe(view))
+                        .withCause(e)
+                        .build();
+            }
+            uiController.loopMainThreadUntilIdle();
+        }
+
+    };
+}
 }

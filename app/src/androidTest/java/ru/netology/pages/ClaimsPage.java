@@ -13,12 +13,26 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
+import static org.hamcrest.core.IsAnything.anything;
+import static org.hamcrest.core.IsInstanceOf.any;
 import static org.hamcrest.core.IsNot.not;
 import static ru.netology.data.DataHelper.childAtPosition;
 import static ru.netology.data.DataHelper.elementWaiting;
 import static ru.netology.data.DataHelper.withIndex;
 
+import android.view.View;
+
+import androidx.test.espresso.AmbiguousViewMatcherException;
+import androidx.test.espresso.FailureHandler;
+import androidx.test.espresso.NoMatchingRootException;
+import androidx.test.espresso.NoMatchingViewException;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.ViewAssertion;
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.base.DefaultFailureHandler;
+
+import org.hamcrest.Matcher;
 
 import ru.iteco.fmhandroid.R;
 
@@ -28,11 +42,12 @@ public class ClaimsPage {
     public ViewInteraction createClaimButton = onView(withId(R.id.add_new_claim_material_button));
     public int openClaimButton = R.id.claim_list_card;
     public ViewInteraction claimsList = onView(withId(R.id.claim_list_recycler_view));
-    public int emptyList  = R.id.empty_claim_list_image_view;
-    public ViewInteraction nothingToShowWarning = onView(withText("There is nothing here yet..."));
+    public int emptyList = R.id.empty_claim_list_image_view;
+    public ViewInteraction nothingToShowWarning = onView(withText("There is nothing here yet…"));
     public ViewInteraction refreshButton = onView(withText("Refresh"));
     public ViewInteraction butterflyImageClaims = onView(withId(R.id.empty_claim_list_image_view));
 
+    ClaimPage claimPage = new ClaimPage();
 
     public void checkClaimsScreenLoaded() {
         elementWaiting(withText("Claims"), 2000);
@@ -42,12 +57,14 @@ public class ClaimsPage {
         claimsList.check(matches(isDisplayed()));
     }
 
-    public void openClaim (int index) {
+    public void openClaim(int index) {
         onView(withIndex(withId(openClaimButton), index)).perform(click());
+        claimPage.checkClaimScreenLoaded();
+
     }
 
     public void emptyClaimList() {
-        elementWaiting(withId(emptyList), 5000);
+        elementWaiting(withId(emptyList), 3000);
         nothingToShowWarning.check(matches(isDisplayed()));
         refreshButton.check(matches(isDisplayed()));
         butterflyImageClaims.check(matches(isDisplayed()));
@@ -76,66 +93,32 @@ public class ClaimsPage {
         }
 
         public void checkOpen() {
-            if (isChecked().matches(openCheckBox.check(matches(isChecked())))) {
-                openCheckBox.perform(click());
-            }
             openCheckBox.check(matches(isChecked()));
         }
-
         public void uncheckOpen() {
-            if (!isChecked().matches(openCheckBox.check(matches(isChecked())))) {
-                openCheckBox.perform(click());
-            }
-            openCheckBox.check(matches(isNotChecked()));
+            openCheckBox.check(matches(isChecked())).perform(click());
         }
-
         public void checkInProgress() {
-            var asd = assertThat(true,inProgressCheckBox.check(matches(isChecked())));
-            if (assertThat(true, inProgressCheckBox.check(matches(isChecked())))) {
-                inProgressCheckBox.perform(click());
-            }
             inProgressCheckBox.check(matches(isChecked()));
         }
-
         public void uncheckInProgress() {
-            if (!isChecked().matches(inProgressCheckBox.check(matches(isChecked())))) {
-                inProgressCheckBox.perform(click());
-            }
-            inProgressCheckBox.check(matches(isNotChecked()));
+            inProgressCheckBox.check(matches(isChecked())).perform(click());
         }
-
         public void checkExecuted() {
-            if (isChecked().matches(executedCheckBox.check(matches(isChecked())))) {
-                executedCheckBox.perform(click());
-            }
-            executedCheckBox.check(matches(isChecked()));
+            executedCheckBox.check(matches(isNotChecked())).perform(click());
         }
-
         public void uncheckExecuted() {
-            if (!isChecked().matches(executedCheckBox.check(matches(isChecked())))) {
-                executedCheckBox.perform(click());
-            }
             executedCheckBox.check(matches(isNotChecked()));
         }
-
         public void checkCanceled() {
-            if (isChecked().matches(cancelledCheckBox.check(matches(isChecked())))) {
-                cancelledCheckBox.perform(click());
-            }
-            cancelledCheckBox.check(matches(isChecked()));
+            cancelledCheckBox.check(matches(isNotChecked())).perform(click());
         }
-
         public void uncheckCanceled() {
-            if (!isChecked().matches(cancelledCheckBox.check(matches(isChecked())))) {
-                cancelledCheckBox.perform(click());
-            }
             cancelledCheckBox.check(matches(isNotChecked()));
         }
-
         public void cLickOk() {
             okButton.perform(click());
+            elementWaiting(withId(R.id.claim_list_recycler_view), 2000);
         }
-
-
     }
 }

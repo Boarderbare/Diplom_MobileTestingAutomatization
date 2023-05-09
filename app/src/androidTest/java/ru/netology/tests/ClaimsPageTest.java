@@ -152,29 +152,10 @@ public class ClaimsPageTest {
     public void testOpenCloseUnitClaim() {
         claimsPage.openClaim(0);
         claimPage.checkClaimScreenLoaded();
-
     }
 
     @Test
-    @DisplayName("29.Редактирование  заявки ( в статусе open)")
-    public void testOpenClaim() {
-
-    }
-
-    @Test
-    @DisplayName("30. Добавление нового комментария к заявке (open)")
-    public void testToAllClaims() {
-
-    }
-
-    @Test
-    @DisplayName("31. Редактирование комментария в  заявке")
-    public void testAddNewClaim() {
-
-    }
-
-    @Test
-    @DisplayName("32. Взять в работу заявку Open - Take to work")
+    @DisplayName("33. Взять в работу заявку Open - Take to work")
     public void testToMain() {
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));
         claimsPage.claimsFilterButton.perform(click());
@@ -192,7 +173,7 @@ public class ClaimsPageTest {
     }
 
     @Test
-    @DisplayName("33. Отклонить заявку Open - Cancel")
+    @DisplayName("34. Отклонить заявку Open - Cancel")
     public void testToClaims() {
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));
         claimsPage.claimsFilterButton.perform(click());
@@ -209,7 +190,7 @@ public class ClaimsPageTest {
         assertEquals("Canceled",claimPage.getStatus());
     }
     @Test
-    @DisplayName("34. Выполнить заявку In Progress - To execute")
+    @DisplayName("35. Выполнить заявку In Progress - To execute")
     public void testToNews() {
         String comment = "Done";
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));
@@ -230,7 +211,7 @@ public class ClaimsPageTest {
     }
 
     @Test
-    @DisplayName("35. Отказаться от заявки  (In Progress) - Throw off")
+    @DisplayName("36. Отказаться от заявки  (In Progress) - Throw off")
     public void testToAbout() {
         String comment = "Done";
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));

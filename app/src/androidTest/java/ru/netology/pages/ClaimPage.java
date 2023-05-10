@@ -59,17 +59,7 @@ public class ClaimPage {
         withParent(withParent(withId(R.id.comment_text_input_layout)))));
     public ViewInteraction textComment = onView(withText(R.id.comment_description_text_view));
 
-    public void checkClaimStatusLoaded() {
-        elementWaiting(withId(R.id.status_label_text_view), 2000);
-        status.check(matches(isDisplayed()));
-    }
 
-    public void checkCommentFieldLoaded() {
-        elementWaiting(withId(R.id.editText), 2000);
-    }
-    public void checkCommentLoaded() {
-        elementWaiting(withId(R.id.comment_text_input_layout), 2000);
-    }
 
     public void checkClaimScreenLoaded() {
         elementWaiting(withText("Title"), 2000);
@@ -110,9 +100,10 @@ public class ClaimPage {
     public String getClaimTime(){
         return DataHelper.Text.getText(claimTime);
     }
+
     public void openComment (int index) {
         onView(withIndex(withId(R.id.edit_comment_image_button), index)).perform(click());
-    }
+           }
 
     public void addCommentWhenStatusChange(String comment) {
         editTextComment.perform(replaceText(comment));
@@ -122,7 +113,18 @@ public class ClaimPage {
         editCommentField.perform(click()).perform(replaceText(comment));
         editCommentSaveButton.perform(click());
     }
+    public void checkClaimStatusLoaded() {
+        elementWaiting(withId(R.id.status_label_text_view), 2000);
+        status.check(matches(isDisplayed()));
+    }
 
+    public void checkCommentFieldLoaded() {
+        elementWaiting(withId(R.id.editText), 2000);
+    }
+
+    public void checkCommentLoaded() {
+        elementWaiting(withId(R.id.comment_text_input_layout), 2000);
+    }
     public void checkCreatedClaimElement(String title, String date, String time,String description){
         assertEquals(title, getClaimTitle());
         assertEquals(date, getClaimDate());

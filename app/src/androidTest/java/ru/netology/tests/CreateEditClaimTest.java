@@ -73,8 +73,9 @@ public class CreateEditClaimTest {
     String time = "12:00";
     String comment = "comment123456";
     String comment2 = "comment1234567";
+
     @Test
-    @Ignore  //в приложении не появляется новая заявка. Ошибки нет
+    @Ignore  //в приложении не появляется новая заявка наверху списка.
     @DisplayName("29.Создание новой заявки")
     public void testCreateClaim() {
         claimsPage.createClaimButton.perform(click());
@@ -146,7 +147,13 @@ public class CreateEditClaimTest {
         filterClaimsWindow.uncheckCanceled();
         filterClaimsWindow.cLickOk();
         claimsPage.openClaim(0);
-        // не открывается
+        // add comment
+        claimPage.addCommentButton.perform(nestedScrollTo());
+        claimPage.addCommentButton.perform(click());
+        claimPage.checkCommentLoaded();
+        claimPage.addComment(comment);
+        claimPage.checkClaimScreenLoaded();
+        // open first comment
         claimPage.openComment(0);
         claimPage.checkCommentLoaded();
         claimPage.addComment(comment2);

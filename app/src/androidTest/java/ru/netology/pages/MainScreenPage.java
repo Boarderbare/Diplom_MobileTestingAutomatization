@@ -107,7 +107,14 @@ public class MainScreenPage {
         menuButton.perform(click());
         menuClaims.check(matches(isDisplayed()));
         menuClaims.perform(click());
-        claimsPage.checkClaimsScreenLoaded();
+//        claimsPage.checkClaimsScreenLoaded();
+    }
+    public void  goToNews() {
+        menuButton.check(matches(isDisplayed()));
+        menuButton.perform(click());
+        menuNews.check(matches(isDisplayed()));
+        menuNews.perform(click());
+//        newsPage.checkNewsScreenLoaded();
     }
 
     public void ourMissionButton() {

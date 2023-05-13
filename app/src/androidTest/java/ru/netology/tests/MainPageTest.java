@@ -177,19 +177,13 @@ public class MainPageTest {
     @Test
     @DisplayName("19.Menu: перейти в раздел Claims")
     public void testToClaims() {
-        mainScreenPage.menuButton.check(matches(isDisplayed()));
-        mainScreenPage.menuButton.perform(click());
-        mainScreenPage.menuClaims.check(matches(isDisplayed()));
-        mainScreenPage.menuClaims.perform(click());
+        mainScreenPage.goToClaims();
         claimsPage.checkClaimsScreenLoaded();
     }
     @Test
     @DisplayName("20.Menu: перейти в раздел News")
     public void testToNews() {
-        mainScreenPage.menuButton.check(matches(isDisplayed()));
-        mainScreenPage.menuButton.perform(click());
-        mainScreenPage.menuNews.check(matches(isDisplayed()));
-        mainScreenPage.menuNews.perform(click());
+        mainScreenPage.goToNews();
         newsPage.checkNewsScreenLoaded();
     }
 

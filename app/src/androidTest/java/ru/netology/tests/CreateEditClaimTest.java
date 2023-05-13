@@ -65,7 +65,7 @@ public class CreateEditClaimTest {
             claimsPage.checkClaimsScreenLoaded();
         }
     }
-
+//ToDo перенести данные в Help
     String executor = "executor123";
     String title = "title123";
     String description = "description123";

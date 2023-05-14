@@ -12,6 +12,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static ru.netology.data.DataHelper.elementWaiting;
 import static ru.netology.data.DataHelper.nestedScrollTo;
 import static ru.netology.data.DataHelper.withIndex;
@@ -29,6 +30,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
@@ -121,8 +123,9 @@ public class NewsTest {
 
     @Test
     @DisplayName("40. News: Развернуть описание")
-    public void testOpenOneNews() {
-
+     public void testOpenOneNews() {
+        controlPanelPage.chooseFirstNews();
+        controlPanelPage.newsDescription.check(matches(isDisplayed()));
     }
 
     @Test
@@ -189,13 +192,24 @@ public class NewsTest {
     }
 
     @Test
-    @DisplayName("45. Control Panel:Развернуть описание")
+    @DisplayName("45. Control Panel: Развернуть описание")
     public void testCpOpenOneNews() {
-
+        newsPage.goToControlPanel();
+        controlPanelPage.chooseFirstNews();
+        controlPanelPage.newsDescription.check(matches(isDisplayed()));
     }
-    @Test
-    @DisplayName("46. Control Panel: Создание новой объявления")
-    public void testCpCreateNews() {
 
+    @Test
+    @DisplayName("46. Control Panel: Удаление новости")
+    public void testCpCreateNews() {
+        newsPage.goToControlPanel();
+        String title = DataHelper.Text.getText(controlPanelPage.newsItemTitle);
+        controlPanelPage.deleteNewsButton.perform(click());
+        controlPanelPage.cancelButton.check(matches(isDisplayed()));
+        controlPanelPage.okButton.check(matches(isDisplayed()));
+        controlPanelPage.okButton.perform(click());
+        controlPanelPage.checkListNewsLoaded();
+        String title2 = DataHelper.Text.getText(controlPanelPage.newsItemTitleAfterDelete);
+        assertNotEquals(title, title2);
     }
 }

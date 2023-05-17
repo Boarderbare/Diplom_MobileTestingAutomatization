@@ -43,6 +43,7 @@ public class CreateClaimPage {
         saveButton.check(matches(isDisplayed()));
         cancelButton.check(matches(isDisplayed()));
     }
+
     public void checkEditClaimScreenLoaded() {
         elementWaiting(withText("Editing"), 2000);
         editingClaimsScreenName.check(matches(isDisplayed()));
@@ -59,18 +60,23 @@ public class CreateClaimPage {
     public void fillInTitle(String title) {
         titleField.perform(replaceText(title));
     }
+
     public void fillInExecutor(String executor) {
         executorField.perform(replaceText(executor));
     }
+
     public void fillInDate(String date) {
         claimDateField.perform(replaceText(date));
     }
+
     public void fillInTime(String time) {
         claimTimeField.perform(replaceText(time));
     }
+
     public void fillItDescription(String description) {
         claimDescriptionField.perform(replaceText(description));
     }
+
     public void saveClaim() {
         saveButton.perform(click());
         claimPage.checkClaimScreenLoaded();

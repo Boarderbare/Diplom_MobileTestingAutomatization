@@ -34,8 +34,8 @@ public class NewsPage {
     public ViewInteraction sortNewsButton = onView(withId(R.id.sort_news_material_button));
     public ViewInteraction filterNewsButton = onView(withId(R.id.filter_news_material_button));
     public ViewInteraction allNewsList = onView(withId(R.id.all_news_cards_block_constraint_layout));
-    public  int newsList = R.id.news_list_recycler_view;
-//    public ViewInteraction editButton = onView(
+    public int newsList = R.id.news_list_recycler_view;
+    //    public ViewInteraction editButton = onView(
 //            allOf(withId(R.id.edit_news_material_button),
 //                    childAtPosition(
 //                            withClassName(is("android.widget.LinearLayout")), childAtPosition(
@@ -66,7 +66,7 @@ public class NewsPage {
 
 
     public void checkListNewsLoaded() {
-    elementWaiting(withId(newsList), 10000);
+        elementWaiting(withId(newsList), 10000);
     }
 
     public void checkDescriptionView(String text) {

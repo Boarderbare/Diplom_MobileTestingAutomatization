@@ -9,14 +9,18 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
 import static ru.netology.data.DataHelper.checkMessage;
+
 import android.os.SystemClock;
+
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
@@ -68,6 +72,7 @@ public class AuthTest {
 //                check(matches(isDisplayed()));
 //        checkMessage(R.string.empty_login_or_password, true);
     }
+
     @Test
     @DisplayName("4.Вход в личный кабинет с пустым паролем")
     public void testAuthEmptyPassword() {
@@ -75,7 +80,7 @@ public class AuthTest {
         authPage.enterPassword(DataHelper.AuthInfo.emptyPassword().getPass());
         authPage.signIn();
         checkMessage(R.string.empty_login_or_password, true);
-        }
+    }
 
     @Test
     @DisplayName("5.Вход в личный кабинет с неверным логином")
@@ -93,7 +98,7 @@ public class AuthTest {
         authPage.enterPassword(DataHelper.AuthInfo.wrongPassword().getPass());
         authPage.signIn();
 //        checkMessage(R.string.wrong_login_or_password, true);
-      }
+    }
 
     @Test
     @DisplayName("7.Выход из личного кабинета")

@@ -27,6 +27,7 @@ import org.hamcrest.core.IsInstanceOf;
 
 import ru.iteco.fmhandroid.R;
 import ru.netology.data.DataHelper;
+
 import static ru.netology.data.DataHelper.*;
 
 public class MainScreenPage {
@@ -55,7 +56,7 @@ public class MainScreenPage {
                     childAtPosition(
                             withClassName(is("android.widget.LinearLayout")), childAtPosition(
                                     withClassName(is("android.widget.LinearLayout")),
-                                        withId(R.id.container_list_news_include_on_fragment_main),
+                                    withId(R.id.container_list_news_include_on_fragment_main),
                                     0),
                             4)));
 
@@ -71,7 +72,7 @@ public class MainScreenPage {
                     childAtPosition(
                             withClassName(is("android.widget.LinearLayout")), childAtPosition(
                                     withClassName(is("android.widget.LinearLayout")),
-                                        withId(R.id.container_list_claim_include_on_fragment_main),
+                                    withId(R.id.container_list_claim_include_on_fragment_main),
                                     0),
                             3)));
 //    public ViewInteraction claimList = onView(
@@ -85,31 +86,32 @@ public class MainScreenPage {
     ClaimsPage claimsPage = new ClaimsPage();
 
     public void checkMainScreenLoaded() {
-            elementWaiting(withText("News"), 5000);
-        }
+        elementWaiting(withText("News"), 5000);
+    }
 
-        public void isMainScreen() {
-            tradeMark.check(matches(isDisplayed()));
-            news.check(matches(isDisplayed()));
-            newsUnit.check(matches(isDisplayed()));
-            claims.check(matches(isDisplayed()));
-            claimsUnit.check(matches(isDisplayed()));
-        }
+    public void isMainScreen() {
+        tradeMark.check(matches(isDisplayed()));
+        news.check(matches(isDisplayed()));
+        newsUnit.check(matches(isDisplayed()));
+        claims.check(matches(isDisplayed()));
+        claimsUnit.check(matches(isDisplayed()));
+    }
 
-    public void  logOut() {
+    public void logOut() {
         logOutButton.perform(click());
         logOut.check(matches(isDisplayed()));
         logOut.perform(click());
     }
 
-    public void  goToClaims() {
+    public void goToClaims() {
         menuButton.check(matches(isDisplayed()));
         menuButton.perform(click());
         menuClaims.check(matches(isDisplayed()));
         menuClaims.perform(click());
 //        claimsPage.checkClaimsScreenLoaded();
     }
-    public void  goToNews() {
+
+    public void goToNews() {
         menuButton.check(matches(isDisplayed()));
         menuButton.perform(click());
         menuNews.check(matches(isDisplayed()));
@@ -129,6 +131,7 @@ public class MainScreenPage {
                 allOf(withId(R.id.news_item_description_text_view), withText(descriptionText)));
         newsDescription.check(matches(isDisplayed()));
     }
+
     public void descriptionNewsIsNotDisplayed(int position) {
         String descriptionText = DataHelper.
                 Text.getText(onView(withIndex(withId(R.id.news_item_description_text_view), position)));

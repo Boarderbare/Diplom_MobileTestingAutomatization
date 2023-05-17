@@ -95,27 +95,35 @@ public class ClaimsPage {
         public void checkOpen() {
             openCheckBox.check(matches(isChecked()));
         }
+
         public void uncheckOpen() {
             openCheckBox.check(matches(isChecked())).perform(click());
         }
+
         public void checkInProgress() {
             inProgressCheckBox.check(matches(isChecked()));
         }
+
         public void uncheckInProgress() {
             inProgressCheckBox.check(matches(isChecked())).perform(click());
         }
+
         public void checkExecuted() {
             executedCheckBox.check(matches(isNotChecked())).perform(click());
         }
+
         public void uncheckExecuted() {
             executedCheckBox.check(matches(isNotChecked()));
         }
+
         public void checkCanceled() {
             cancelledCheckBox.check(matches(isNotChecked())).perform(click());
         }
+
         public void uncheckCanceled() {
             cancelledCheckBox.check(matches(isNotChecked()));
         }
+
         public void cLickOk() {
             okButton.perform(click());
             elementWaiting(withId(R.id.claim_list_recycler_view), 2000);

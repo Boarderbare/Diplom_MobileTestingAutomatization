@@ -37,9 +37,9 @@ public class AboutPage {
         returnButton.check(matches(isDisplayed()));
     }
 
-        public  void isOurMissiionScreen() {
+    public void isOurMissiionScreen() {
 
-        }
+    }
 
 
 }

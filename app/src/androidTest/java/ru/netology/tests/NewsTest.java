@@ -73,9 +73,10 @@ public class NewsTest {
             newsPage.checkNewsScreenLoaded();
         }
     }
-//ToDo перенести данные в Help
-    String startDate= "01.05.2023";
-    String endDate= "02.05.2023";
+
+    //ToDo перенести данные в Help
+    String startDate = "01.05.2023";
+    String endDate = "02.05.2023";
 //    String description = "description123";
 //    String date = "01.06.2023";
 //    String time = "12:00";
@@ -123,7 +124,7 @@ public class NewsTest {
 
     @Test
     @DisplayName("40. News: Развернуть описание")
-     public void testOpenOneNews() {
+    public void testOpenOneNews() {
         controlPanelPage.chooseFirstNews();
         controlPanelPage.newsDescription.check(matches(isDisplayed()));
     }
@@ -201,7 +202,7 @@ public class NewsTest {
 
     @Test
     @DisplayName("46. Control Panel: Удаление новости")
-    public void testCpCreateNews() {
+    public void testCpDeleteNews() {
         newsPage.goToControlPanel();
         String title = DataHelper.Text.getText(controlPanelPage.newsItemTitle);
         controlPanelPage.deleteNewsButton.perform(click());
@@ -212,4 +213,41 @@ public class NewsTest {
         String title2 = DataHelper.Text.getText(controlPanelPage.newsItemTitleAfterDelete);
         assertNotEquals(title, title2);
     }
+
+    @Test
+    @DisplayName("47. Control panel: Создание новой объявления")
+    public void testCpCreateNews() {
+    }
+
+    @Test
+    @DisplayName("48. Control panel: Создание новой объявления. Поля не заполнены")
+    public void testCpCreateNewsEmptyField() {
+    }
+
+    @Test
+    @DisplayName("49. Control panel: Отредактировать в объявлении Title")
+    public void testCpEditTitleNews() {
+    }
+
+    @Test
+    @DisplayName("50.  Control panel: Отредактировать в объявлении Date")
+    public void testCpEditDateNews() {
+    }
+
+    @Test
+    @DisplayName("51. Control panel: Отредактировать в объявлении Time")
+    public void testCpEditTimeNews() {
+    }
+
+    @Test
+    @DisplayName("52. Control panel: Отредактировать в объявлении Description")
+    public void testCpEditDescriptionNews() {
+    }
+
+    @Test
+    @DisplayName("53. Отредактировать объявление. Изменит статус.")
+    public void testCpChangeStatusNews() {
+    }
+
+
 }

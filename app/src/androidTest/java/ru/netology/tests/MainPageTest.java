@@ -18,15 +18,19 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static ru.netology.data.DataHelper.checkMessage;
+
 import android.os.SystemClock;
+
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.netology.pages.AboutPage;
@@ -74,7 +78,7 @@ public class MainPageTest {
         mainScreenPage.ourMissionButton.check(matches(isDisplayed()));
         mainScreenPage.ourMissionButton.perform(click());
         ourMission.checkOurMissionScreenLoaded();
-        ourMission.isOurMissiionScreen();
+        ourMission.isOurMissionScreen();
     }
 
     @Test
@@ -180,6 +184,7 @@ public class MainPageTest {
         mainScreenPage.goToClaims();
         claimsPage.checkClaimsScreenLoaded();
     }
+
     @Test
     @DisplayName("20.Menu: перейти в раздел News")
     public void testToNews() {

@@ -23,7 +23,7 @@ public class OurMissionPage {
         elementWaiting(withText("Love is all"), 2000);
     }
 
-    public void isOurMissiionScreen() {
+    public void isOurMissionScreen() {
         screenName.check(matches(isDisplayed()));
         listOfItems.check(matches(isDisplayed()));
     }

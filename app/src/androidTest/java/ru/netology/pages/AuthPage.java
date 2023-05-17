@@ -17,34 +17,36 @@ import androidx.test.espresso.ViewInteraction;
 
 import ru.iteco.fmhandroid.R;
 import ru.netology.data.DataHelper;
+
 import static ru.netology.data.DataHelper.*;
 
 public class AuthPage {
-   DataHelper dataHelper = new DataHelper();
-   ViewInteraction screenName =
-           onView(allOf( withText("Authorization"), withParent(withParent(withId(R.id.nav_host_fragment)))));
-   ViewInteraction loginField =
+    DataHelper dataHelper = new DataHelper();
+    ViewInteraction screenName =
+            onView(allOf(withText("Authorization"), withParent(withParent(withId(R.id.nav_host_fragment)))));
+    ViewInteraction loginField =
             onView(allOf(withHint("Login"), withParent(withParent(withId(R.id.login_text_input_layout)))));
-   ViewInteraction passField =
+    ViewInteraction passField =
             onView(allOf(withHint("Password"), withParent(withParent(withId(R.id.password_text_input_layout)))));
-   ViewInteraction signButton =
-            onView(allOf(withText("Sign in"),  withId(R.id.enter_button)));
+    ViewInteraction signButton =
+            onView(allOf(withText("Sign in"), withId(R.id.enter_button)));
 
-   int massageIdWrongAuth = R.string.wrong_login_or_password;
-   int massageIdEmptyAuth = R.string.empty_login_or_password;
-   MainScreenPage mainScreenPage = new MainScreenPage();
+    int massageIdWrongAuth = R.string.wrong_login_or_password;
+    int massageIdEmptyAuth = R.string.empty_login_or_password;
+    MainScreenPage mainScreenPage = new MainScreenPage();
 
-   public void checkLoadScreen(){
-       elementWaiting(withId(R.id.enter_button), 5000);
-   }
-   public void isAuthScreen() {
+    public void checkLoadScreen() {
+        elementWaiting(withId(R.id.enter_button), 5000);
+    }
+
+    public void isAuthScreen() {
         screenName.check(matches(isDisplayed()));
         loginField.check(matches(isDisplayed()));
         passField.check(matches(isDisplayed()));
         signButton.check(matches(isDisplayed()));
     }
 
-    public void login(){
+    public void login() {
         enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
         enterPassword(DataHelper.AuthInfo.validAuth().getPass());
         signIn();
@@ -67,7 +69,7 @@ public class AuthPage {
 //    public void checkEmptyMessage() {
 //        dataHelper.checkMessage(massageIdEmptyAuth).check(matches(isDisplayed()));
 
-    }
+}
 
 
 

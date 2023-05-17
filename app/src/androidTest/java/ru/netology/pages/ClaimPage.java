@@ -41,7 +41,7 @@ public class ClaimPage {
     public ViewInteraction createdLabel = onView(withId(R.id.create_data_label_text_view));
     public ViewInteraction dateCreated = onView(withId(R.id.create_data_text_view));
     public ViewInteraction timeCreated = onView(withId(R.id.create_time_text_view));
-//    public ViewInteraction addCommentButton = onView(withId(R.id.status_label_text_view));
+    //    public ViewInteraction addCommentButton = onView(withId(R.id.status_label_text_view));
     public ViewInteraction editClaimButton = onView(withId(R.id.edit_processing_image_button));
     public ViewInteraction statusChangeButton = onView(withId(R.id.status_processing_image_button));
     public ViewInteraction exitClaimButton = onView(withId(R.id.close_image_button));
@@ -52,13 +52,13 @@ public class ClaimPage {
     public ViewInteraction cancelClaim = onView(withText("Cancel"));
     public ViewInteraction throwOffClaim = onView(withText("Throw off"));
     public ViewInteraction toExecuteClaim = onView(withText("To execute"));
-    public ViewInteraction editTextComment = onView(withId(R.id.editText));;
+    public ViewInteraction editTextComment = onView(withId(R.id.editText));
+    ;
     public ViewInteraction editTextCommentOkButton = onView(withText("OK"));
     public ViewInteraction editCommentSaveButton = onView(withId(R.id.save_button));
     public ViewInteraction editCommentField = onView(allOf(withHint("Comment"),
-        withParent(withParent(withId(R.id.comment_text_input_layout)))));
+            withParent(withParent(withId(R.id.comment_text_input_layout)))));
     public ViewInteraction textComment = onView(withText(R.id.comment_description_text_view));
-
 
 
     public void checkClaimScreenLoaded() {
@@ -85,34 +85,40 @@ public class ClaimPage {
 //        exitClaimButton.check(matches(isDisplayed()));
     }
 
-    public String getStatus(){
-        return  DataHelper.Text.getText(status);
+    public String getStatus() {
+        return DataHelper.Text.getText(status);
     }
-    public String getClaimTitle(){
+
+    public String getClaimTitle() {
         return DataHelper.Text.getText(title);
     }
-    public String getClaimDescription(){
+
+    public String getClaimDescription() {
         return DataHelper.Text.getText(descriptionText);
     }
-    public String getClaimDate(){
+
+    public String getClaimDate() {
         return DataHelper.Text.getText(claimDate);
     }
-    public String getClaimTime(){
+
+    public String getClaimTime() {
         return DataHelper.Text.getText(claimTime);
     }
 
-    public void openComment (int index) {
+    public void openComment(int index) {
         onView(withIndex(withId(R.id.edit_comment_image_button), index)).perform(click());
-           }
+    }
 
     public void addCommentWhenStatusChange(String comment) {
         editTextComment.perform(replaceText(comment));
         editTextCommentOkButton.perform(click());
     }
+
     public void addComment(String comment) {
         editCommentField.perform(click()).perform(replaceText(comment));
         editCommentSaveButton.perform(click());
     }
+
     public void checkClaimStatusLoaded() {
         elementWaiting(withId(R.id.status_label_text_view), 2000);
         status.check(matches(isDisplayed()));
@@ -125,7 +131,8 @@ public class ClaimPage {
     public void checkCommentLoaded() {
         elementWaiting(withId(R.id.comment_text_input_layout), 2000);
     }
-    public void checkCreatedClaimElement(String title, String date, String time,String description){
+
+    public void checkCreatedClaimElement(String title, String date, String time, String description) {
         assertEquals(title, getClaimTitle());
         assertEquals(date, getClaimDate());
         assertEquals(time, getClaimTime());
@@ -133,7 +140,7 @@ public class ClaimPage {
     }
 
     public void checkComment(String comment) {
-      onView(allOf(withId(R.id.comment_description_text_view), withText(comment))).
+        onView(allOf(withId(R.id.comment_description_text_view), withText(comment))).
                 check(matches(isDisplayed()));
     }
 

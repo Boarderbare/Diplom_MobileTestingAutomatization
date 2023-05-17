@@ -88,7 +88,7 @@ public class ClaimsPageTest {
         filterClaimsWindow.cLickOk();
         claimsPage.openClaim(0);
         claimPage.checkClaimScreenLoaded();
-        assertEquals("Open",claimPage.getStatus());
+        assertEquals("Open", claimPage.getStatus());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class ClaimsPageTest {
         filterClaimsWindow.cLickOk();
         claimsPage.openClaim(0);
         claimPage.checkClaimScreenLoaded();
-        assertEquals("In progress",claimPage.getStatus());
+        assertEquals("In progress", claimPage.getStatus());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class ClaimsPageTest {
         filterClaimsWindow.cLickOk();
         claimsPage.openClaim(0);
         claimPage.checkClaimScreenLoaded();
-        assertEquals("Executed",claimPage.getStatus());
+        assertEquals("Executed", claimPage.getStatus());
     }
 
     @Test
@@ -136,7 +136,7 @@ public class ClaimsPageTest {
         filterClaimsWindow.cLickOk();
         claimsPage.openClaim(0);
         claimPage.checkClaimScreenLoaded();
-        assertEquals("Canceled",claimPage.getStatus());
+        assertEquals("Canceled", claimPage.getStatus());
     }
 
     @Test
@@ -145,7 +145,7 @@ public class ClaimsPageTest {
         claimsPage.createClaimButton.check(matches(isDisplayed()));
         claimsPage.createClaimButton.perform(click());
         createClaimPage.checkCreateClaimScreenLoaded();
-     }
+    }
 
     @Test
     @DisplayName("28.Открыть заявку")
@@ -169,7 +169,7 @@ public class ClaimsPageTest {
         claimPage.statusChangeButton.perform(click());
         claimPage.takeToWork.perform(click());
         claimPage.checkClaimStatusLoaded();
-        assertEquals("In progress",claimPage.getStatus());
+        assertEquals("In progress", claimPage.getStatus());
     }
 
     @Test
@@ -187,8 +187,9 @@ public class ClaimsPageTest {
         claimPage.statusChangeButton.perform(click());
         claimPage.cancelClaim.perform(click());
         claimPage.checkClaimStatusLoaded();
-        assertEquals("Canceled",claimPage.getStatus());
+        assertEquals("Canceled", claimPage.getStatus());
     }
+
     @Test
     @DisplayName("35. Выполнить заявку In Progress - To execute")
     public void testToNews() {
@@ -207,7 +208,7 @@ public class ClaimsPageTest {
         claimPage.toExecuteClaim.perform(click());
         claimPage.checkCommentFieldLoaded();
         claimPage.addCommentWhenStatusChange(comment);
-        assertEquals("Executed",claimPage.getStatus());
+        assertEquals("Executed", claimPage.getStatus());
     }
 
     @Test
@@ -228,6 +229,6 @@ public class ClaimsPageTest {
         claimPage.throwOffClaim.perform(click());
         claimPage.checkCommentFieldLoaded();
         claimPage.addCommentWhenStatusChange(comment);
-        assertEquals("Open",claimPage.getStatus());
+        assertEquals("Open", claimPage.getStatus());
     }
 }

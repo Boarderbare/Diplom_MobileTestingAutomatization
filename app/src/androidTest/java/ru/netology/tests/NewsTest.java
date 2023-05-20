@@ -213,41 +213,4 @@ public class NewsTest {
         String title2 = DataHelper.Text.getText(controlPanelPage.newsItemTitleAfterDelete);
         assertNotEquals(title, title2);
     }
-
-    @Test
-    @DisplayName("47. Control panel: Создание новой объявления")
-    public void testCpCreateNews() {
-    }
-
-    @Test
-    @DisplayName("48. Control panel: Создание новой объявления. Поля не заполнены")
-    public void testCpCreateNewsEmptyField() {
-    }
-
-    @Test
-    @DisplayName("49. Control panel: Отредактировать в объявлении Title")
-    public void testCpEditTitleNews() {
-    }
-
-    @Test
-    @DisplayName("50.  Control panel: Отредактировать в объявлении Date")
-    public void testCpEditDateNews() {
-    }
-
-    @Test
-    @DisplayName("51. Control panel: Отредактировать в объявлении Time")
-    public void testCpEditTimeNews() {
-    }
-
-    @Test
-    @DisplayName("52. Control panel: Отредактировать в объявлении Description")
-    public void testCpEditDescriptionNews() {
-    }
-
-    @Test
-    @DisplayName("53. Отредактировать объявление. Изменит статус.")
-    public void testCpChangeStatusNews() {
-    }
-
-
 }

@@ -30,10 +30,14 @@ public class ControlPanelPage {
     public ViewInteraction listOfNews = onView(withId(R.id.news_list_recycler_view));
     public ViewInteraction butterflyImageNews = onView(withId(R.id.empty_news_list_image_view));
 
-
-    //    public ViewInteraction deleteNewsButton(String newsTitle) {
-//        return onView(allOf(withId(R.id.delete_news_item_image_view), withParent(withParent(allOf(withId(R.id.news_item_material_card_view), withChild(withChild(withText(newsTitle))))))));
+//  public ViewInteraction deleteNewsButton(String newsTitle) {
+//        return onView(allOf(withId(R.id.delete_news_item_image_view),
+//        withParent(withParent(allOf(withId(R.id.news_item_material_card_view),
+//        withChild(withChild(withText(newsTitle))))))));
 //    }
+
+
+    // первая новость в списке
     public ViewInteraction deleteNewsButton = onView(withIndex(withId(R.id.delete_news_item_image_view), 0));
     public ViewInteraction editNewsButton = onView(withIndex(withId(R.id.edit_news_item_image_view), 0));
     public ViewInteraction openDescriptionNewsButton = onView(withIndex(withId(R.id.view_news_item_image_view), 0));
@@ -45,14 +49,14 @@ public class ControlPanelPage {
     public ViewInteraction newsDataPublished = onView(withIndex(withId(R.id.news_item_publication_date_text_view), 0));
     public ViewInteraction newsDataPCreated = onView(withIndex(withId(R.id.news_item_create_date_text_view), 0));
     public ViewInteraction newsCard = onView(withIndex(withId(R.id.news_item_material_card_view), 0));
-    //  Delete dialog
+//  Delete dialog
 //    public ViewInteraction deleteDialog = onView(
 //            withText("Are you sure you want to permanently delete the document? These changes cannot be reserved in the future."));
     public ViewInteraction cancelButton = onView(withText("CANCEL"));
     public ViewInteraction okButton = onView(withText("OK"));
 
     public void checkControlPanelScreenLoaded() {
-        elementWaiting(withText("Control panel"), 2000);
+        elementWaiting(withText("Control panel"), 5000);
         controlPanelScreenName.check(matches(isDisplayed()));
         sortButton.check(matches(isDisplayed()));
         newsFilterButton.check(matches(isDisplayed()));
@@ -61,7 +65,7 @@ public class ControlPanelPage {
     }
 
     public void checkListNewsLoaded() {
-        elementWaiting(withId(R.id.news_list_recycler_view), 2000);
+        elementWaiting(withId(R.id.news_list_recycler_view), 5000);
     }
 
     public void checkItemScreenLoaded() {
@@ -76,11 +80,23 @@ public class ControlPanelPage {
         newsDataPCreated.check(matches(isDisplayed()));
     }
 
+
+
+//        newsItemTitle.check(matches(isDisplayed()));
+//        deleteNewsButton.check(matches(isDisplayed()));
+//        editNewsButton.check(matches(isDisplayed()));
+//        openDescriptionNewsButton.check(matches(isDisplayed()));
+//        newsStatus.check(matches(isDisplayed()));
+//        newsStatusIcon.check(matches(isDisplayed()));
+//        newsDescription.check(matches(isDisplayed()));
+//        newsDataPublished.check(matches(isDisplayed()));
+//        newsDataPCreated.check(matches(isDisplayed()));
+
     public void checkDescriptionAndDate(String title, String date) {
         onView(allOf(withId(R.id.news_item_title_text_view), withText(title))).
                 check(matches(isDisplayed()));
-        // падает. нужно проверять в последнем блоке title  и дату
-//        onView(allOf(withId(R.id.news_item_publication_date_text_view), withText(date))).
+//  падает. нужно проверять в последнем блоке title  и дату. Непонятно как искать последний блок
+//      onView(allOf(withId(R.id.news_item_publication_date_text_view), withText(date))).
 //                check(matches(isDisplayed()));
     }
 

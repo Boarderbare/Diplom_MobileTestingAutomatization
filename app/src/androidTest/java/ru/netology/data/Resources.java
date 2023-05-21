@@ -3,12 +3,9 @@ package ru.netology.data;
 public class Resources {
 
 //import io.bloco.faker.Faker;
-//
 //    Faker faker = new Faker();
-
-//    public String claimPublicationTime = getCurrentTime();
-//    public String claimPublicationDate = getCurrentDate();
-
+//    public String Time = getCurrentTime();
+//    public String Date = getCurrentDate();
 
     public String category = "Зарплата";
     public String title = "title12345";

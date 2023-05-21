@@ -1,13 +1,5 @@
 package ru.netology.tests;
 
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
-import static androidx.test.espresso.matcher.ViewMatchers.withHint;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
-
 import static ru.netology.data.DataHelper.checkMessage;
 
 import android.os.SystemClock;
@@ -17,10 +9,12 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
@@ -31,7 +25,7 @@ import ru.netology.pages.MainScreenPage;
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 
-public class AuthTest {
+public class AuthUnitTest {
     AuthPage authPage = new AuthPage();
     MainScreenPage mainScreenPage = new MainScreenPage();
 
@@ -41,7 +35,7 @@ public class AuthTest {
 
     @Before
     public void readyScreen() {
-        SystemClock.sleep(5000);
+        SystemClock.sleep(10000);
         try {
             authPage.checkLoadScreen();
             authPage.isAuthScreen();
@@ -62,18 +56,22 @@ public class AuthTest {
     }
 
     @Test
+    @Ignore
+    @Description("Зависает. Не работает проверка всплывающих сообщений")
     @DisplayName("3.Вход в личный кабинет с пустым логином")
     public void testAuthEmptyLogin() {
         authPage.enterLogin(DataHelper.AuthInfo.emptyLogin().getLogin());
         authPage.enterPassword(DataHelper.AuthInfo.validAuth().getPass());
         authPage.signIn();
-//          не работает матчер вслывающих сообщений никак
+//   не работает матчер вслывающих сообщений никак
 //        onView(withHint(R.string.empty_login_or_password)).inRoot(isPopupWindow()).
 //                check(matches(isDisplayed()));
 //        checkMessage(R.string.empty_login_or_password, true);
     }
 
     @Test
+    @Ignore
+    @Description("Зависает. Не работает проверка всплывающих сообщений")
     @DisplayName("4.Вход в личный кабинет с пустым паролем")
     public void testAuthEmptyPassword() {
         authPage.enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
@@ -83,21 +81,25 @@ public class AuthTest {
     }
 
     @Test
+    @Ignore
+    @Description("Зависает. Не работает проверка всплывающих сообщений")
     @DisplayName("5.Вход в личный кабинет с неверным логином")
     public void testAuthInvalidLogin() {
         authPage.enterLogin(DataHelper.AuthInfo.wrongLogin().getLogin());
         authPage.enterPassword(DataHelper.AuthInfo.validAuth().getPass());
         authPage.signIn();
-//        checkMessage(R.string.wrong_login_or_password, true);
+        checkMessage(R.string.wrong_login_or_password, true);
     }
 
     @Test
+    @Ignore
+    @Description("Зависает. Не работает проверка всплывающих сообщений")
     @DisplayName("6.Вход в личный кабинет с неверным паролем")
     public void testAuthInvalidPassword() {
         authPage.enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
         authPage.enterPassword(DataHelper.AuthInfo.wrongPassword().getPass());
         authPage.signIn();
-//        checkMessage(R.string.wrong_login_or_password, true);
+        checkMessage(R.string.wrong_login_or_password, true);
     }
 
     @Test

@@ -121,6 +121,10 @@ public class MainScreenPage {
         menuNews.check(matches(isDisplayed()));
         menuNews.perform(click());
     }
+    public void goOurMission() {
+        ourMissionButton.check(matches(isDisplayed()));
+        ourMissionButton.perform(click());
+    }
 
     public void descriptionNewsIsDisplayed(int position) {
         onView(withIndex(withId(R.id.news_item_description_text_view), position)).check(matches(isDisplayed()));

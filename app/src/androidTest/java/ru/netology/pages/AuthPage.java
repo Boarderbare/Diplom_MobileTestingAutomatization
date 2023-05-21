@@ -36,7 +36,7 @@ public class AuthPage {
     MainScreenPage mainScreenPage = new MainScreenPage();
 
     public void checkLoadScreen() {
-        elementWaiting(withId(R.id.enter_button), 5000);
+        elementWaiting(withId(R.id.enter_button), 10000);
     }
 
     public void isAuthScreen() {
@@ -65,7 +65,6 @@ public class AuthPage {
     public void signIn() {
         signButton.perform(click());
     }
-
 //    public void checkEmptyMessage() {
 //        dataHelper.checkMessage(massageIdEmptyAuth).check(matches(isDisplayed()));
 

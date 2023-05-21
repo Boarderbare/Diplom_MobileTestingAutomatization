@@ -1,22 +1,12 @@
 package ru.netology.tests;
 
-import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.swipeDown;
-import static androidx.test.espresso.action.ViewActions.swipeUp;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
-import static org.junit.Assert.assertEquals;
-import static ru.netology.data.DataHelper.elementWaiting;
 import static ru.netology.data.DataHelper.nestedScrollTo;
 
 import android.os.SystemClock;
-
-import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -28,8 +18,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import ru.iteco.fmhandroid.R;
+
 import ru.iteco.fmhandroid.ui.AppActivity;
+import ru.netology.data.Resources;
 import ru.netology.pages.AuthPage;
 import ru.netology.pages.ClaimPage;
 import ru.netology.pages.ClaimsPage;
@@ -39,13 +30,15 @@ import ru.netology.pages.MainScreenPage;
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 
-public class CreateEditClaimTest {
+public class CreateEditClaimUnitTests {
     AuthPage pageAuth = new AuthPage();
     MainScreenPage mainScreenPage = new MainScreenPage();
     ClaimsPage claimsPage = new ClaimsPage();
     ClaimPage claimPage = new ClaimPage();
     CreateClaimPage createClaimPage = new CreateClaimPage();
     ClaimsPage.FilterClaimsWindow filterClaimsWindow = new ClaimsPage.FilterClaimsWindow();
+    Resources resources = new Resources();
+
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
@@ -66,14 +59,12 @@ public class CreateEditClaimTest {
         }
     }
 
-    //ToDo перенести данные в Help
-    String executor = "executor123";
-    String title = "title123";
-    String description = "description123";
-    String date = "01.06.2023";
-    String time = "12:00";
-    String comment = "comment123456";
-    String comment2 = "comment1234567";
+    String title = resources.title;
+    String description = resources.description;
+    String date = resources.date;
+    String time = resources.time;
+    String comment = resources.comment;
+    String comment2 = resources.comment2;
 
     @Test
     @Ignore  //в приложении не появляется новая заявка наверху списка.
@@ -92,7 +83,7 @@ public class CreateEditClaimTest {
     }
 
     @Test
-    @DisplayName("30.Редактирование  заявки(title,date, time, description) в статусе open")
+    @DisplayName("30.Редактирование заявки(title, date, time, description) в статусе open")
     public void testEditClaim() {
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));
         claimsPage.claimsFilterButton.perform(click());

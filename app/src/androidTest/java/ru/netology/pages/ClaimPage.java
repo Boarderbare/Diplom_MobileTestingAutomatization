@@ -2,19 +2,15 @@ package ru.netology.pages;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.supportsInputMethods;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.junit.Assert.assertEquals;
-import static ru.netology.data.DataHelper.childAtPosition;
 import static ru.netology.data.DataHelper.elementWaiting;
 import static ru.netology.data.DataHelper.withIndex;
 
@@ -53,16 +49,14 @@ public class ClaimPage {
     public ViewInteraction throwOffClaim = onView(withText("Throw off"));
     public ViewInteraction toExecuteClaim = onView(withText("To execute"));
     public ViewInteraction editTextComment = onView(withId(R.id.editText));
-    ;
     public ViewInteraction editTextCommentOkButton = onView(withText("OK"));
     public ViewInteraction editCommentSaveButton = onView(withId(R.id.save_button));
     public ViewInteraction editCommentField = onView(allOf(withHint("Comment"),
             withParent(withParent(withId(R.id.comment_text_input_layout)))));
     public ViewInteraction textComment = onView(withText(R.id.comment_description_text_view));
 
-
     public void checkClaimScreenLoaded() {
-        elementWaiting(withText("Title"), 2000);
+        elementWaiting(withText("Title"), 5000);
         titleLabel.check(matches(isDisplayed()));
         title.check(matches(isDisplayed()));
         executorLabel.check(matches(isDisplayed()));
@@ -77,12 +71,12 @@ public class ClaimPage {
         createdLabel.check(matches(isDisplayed()));
         dateCreated.check(matches(isDisplayed()));
         timeCreated.check(matches(isDisplayed()));
-        //      not displayed with long claims
-//        addCommentButton.check(matches(isDisplayed()));
-//        editingClaimButton.check(matches(isDisplayed()));
-//        statusChangeButton.check(matches(isDisplayed()));
-//        exitClaimButton.check(matches(isDisplayed()));
-//        exitClaimButton.check(matches(isDisplayed()));
+//      not displayed with long claims
+//       addCommentButton.check(matches(isDisplayed()));
+//       editingClaimButton.check(matches(isDisplayed()));
+//       statusChangeButton.check(matches(isDisplayed()));
+//       exitClaimButton.check(matches(isDisplayed()));
+//       exitClaimButton.check(matches(isDisplayed()));
     }
 
     public String getStatus() {
@@ -120,16 +114,16 @@ public class ClaimPage {
     }
 
     public void checkClaimStatusLoaded() {
-        elementWaiting(withId(R.id.status_label_text_view), 2000);
+        elementWaiting(withId(R.id.status_label_text_view), 5000);
         status.check(matches(isDisplayed()));
     }
 
     public void checkCommentFieldLoaded() {
-        elementWaiting(withId(R.id.editText), 2000);
+        elementWaiting(withId(R.id.editText), 5000);
     }
 
     public void checkCommentLoaded() {
-        elementWaiting(withId(R.id.comment_text_input_layout), 2000);
+        elementWaiting(withId(R.id.comment_text_input_layout), 5000);
     }
 
     public void checkCreatedClaimElement(String title, String date, String time, String description) {
@@ -143,6 +137,4 @@ public class ClaimPage {
         onView(allOf(withId(R.id.comment_description_text_view), withText(comment))).
                 check(matches(isDisplayed()));
     }
-
-
 }

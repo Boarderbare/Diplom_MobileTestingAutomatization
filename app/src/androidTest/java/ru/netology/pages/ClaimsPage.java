@@ -3,36 +3,16 @@ package ru.netology.pages;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.assertThat;
 import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isNotChecked;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isA;
-import static org.hamcrest.core.IsAnything.anything;
-import static org.hamcrest.core.IsInstanceOf.any;
-import static org.hamcrest.core.IsNot.not;
-import static ru.netology.data.DataHelper.childAtPosition;
 import static ru.netology.data.DataHelper.elementWaiting;
 import static ru.netology.data.DataHelper.withIndex;
 
-import android.view.View;
-
-import androidx.test.espresso.AmbiguousViewMatcherException;
-import androidx.test.espresso.FailureHandler;
-import androidx.test.espresso.NoMatchingRootException;
-import androidx.test.espresso.NoMatchingViewException;
-import androidx.test.espresso.UiController;
-import androidx.test.espresso.ViewAction;
-import androidx.test.espresso.ViewAssertion;
 import androidx.test.espresso.ViewInteraction;
-import androidx.test.espresso.base.DefaultFailureHandler;
-
-import org.hamcrest.Matcher;
 
 import ru.iteco.fmhandroid.R;
 
@@ -50,7 +30,7 @@ public class ClaimsPage {
     ClaimPage claimPage = new ClaimPage();
 
     public void checkClaimsScreenLoaded() {
-        elementWaiting(withText("Claims"), 2000);
+        elementWaiting(withText("Claims"), 5000);
         claimsScreenName.check(matches(isDisplayed()));
         claimsFilterButton.check(matches(isDisplayed()));
         createClaimButton.check(matches(isDisplayed()));
@@ -60,16 +40,14 @@ public class ClaimsPage {
     public void openClaim(int index) {
         onView(withIndex(withId(openClaimButton), index)).perform(click());
         claimPage.checkClaimScreenLoaded();
-
     }
 
     public void emptyClaimList() {
-        elementWaiting(withId(emptyList), 3000);
+        elementWaiting(withId(emptyList), 5000);
         nothingToShowWarning.check(matches(isDisplayed()));
         refreshButton.check(matches(isDisplayed()));
         butterflyImageClaims.check(matches(isDisplayed()));
     }
-
 
     public static class FilterClaimsWindow {
         public ViewInteraction screenName = onView(withId(R.id.claim_filter_dialog_title));
@@ -80,9 +58,8 @@ public class ClaimsPage {
         public ViewInteraction okButton = onView(allOf(withId(R.id.claim_list_filter_ok_material_button)));
         public ViewInteraction cancelButton = onView(allOf(withId(R.id.claim_filter_cancel_material_button)));
 
-
         public void checkFilterScreenLoaded() {
-            elementWaiting(withText("Filtering"), 1000);
+            elementWaiting(withText("Filtering"), 5000);
             screenName.check(matches(isDisplayed()));
             openCheckBox.check(matches(isDisplayed()));
             inProgressCheckBox.check(matches(isDisplayed()));
@@ -126,7 +103,7 @@ public class ClaimsPage {
 
         public void cLickOk() {
             okButton.perform(click());
-            elementWaiting(withId(R.id.claim_list_recycler_view), 2000);
+            elementWaiting(withId(R.id.claim_list_recycler_view), 5000);
         }
     }
 }

@@ -86,7 +86,7 @@ public class CreateEditNewsUnitTests {
     }
 
     @Test
-//    @Ignore
+    @Ignore
     @Description("Проверка всплывающих сообщений не рабоает")
     @DisplayName("48. Control panel: Создание новой объявления. Поля не заполнены")
     public void testCreateNewsEmptyField() {

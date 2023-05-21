@@ -1,10 +1,7 @@
 package ru.netology.data;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.swipeUp;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-//import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static androidx.test.espresso.matcher.RootMatchers.isPlatformPopup;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -16,16 +13,13 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.not;
 
 import android.os.IBinder;
-import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.PerformException;
@@ -55,8 +49,8 @@ import ru.iteco.fmhandroid.R;
 public class DataHelper {
 
     public DataHelper() {
-
     }
+
     public static class AuthInfo {
         private final String login;
         private final String password;
@@ -91,11 +85,13 @@ public class DataHelper {
             String pass = "";
             return new AuthInfo(login, pass);
         }
+
         public static AuthInfo wrongLogin() {
             String login = "!@";
             String pass = "password2";
             return new AuthInfo(login, pass);
         }
+
         public static AuthInfo wrongPassword() {
             String login = "login2";
             String pass = "@!";
@@ -103,11 +99,9 @@ public class DataHelper {
         }
     }
 
-    public static  ViewInteraction emptyToast(int id) {
+    public static ViewInteraction emptyToast(int id) {
         return onView(withText(id)).inRoot(new ToastMatcher());
     }
-
-
 
     public static View checkMessage(int id, boolean visible) {
         if (visible) {
@@ -115,7 +109,7 @@ public class DataHelper {
         } else {
             emptyToast(id).check(matches(not(isDisplayed())));
         }
-    return null;
+        return null;
     }
 
     public static class ToastMatcher extends TypeSafeMatcher<Root> {
@@ -139,28 +133,25 @@ public class DataHelper {
         }
     }
 
-//public static Matcher<Root> isPopupWindow() {
-//    return isPlatformPopup();
-//}
+    public static Matcher<View> childAtPosition(
+            final Matcher<View> parentMatcher, final int position) {
 
-public static Matcher<View> childAtPosition(
-        final Matcher<View> parentMatcher, final int position) {
+        return new TypeSafeMatcher<View>() {
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("Child at position " + position + " in parent ");
+                parentMatcher.describeTo(description);
+            }
 
-    return new TypeSafeMatcher<View>() {
-        @Override
-        public void describeTo(Description description) {
-            description.appendText("Child at position " + position + " in parent ");
-            parentMatcher.describeTo(description);
-        }
+            @Override
+            public boolean matchesSafely(View view) {
+                ViewParent parent = view.getParent();
+                return parent instanceof ViewGroup && parentMatcher.matches(parent)
+                        && view.equals(((ViewGroup) parent).getChildAt(position));
+            }
+        };
+    }
 
-        @Override
-        public boolean matchesSafely(View view) {
-            ViewParent parent = view.getParent();
-            return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                    && view.equals(((ViewGroup) parent).getChildAt(position));
-        }
-    };
-}
     public static Matcher<View> childAtPosition(Matcher<View> matcher, final Matcher<View> parentMatcher, final int position) {
 
         return new TypeSafeMatcher<View>() {
@@ -178,6 +169,7 @@ public static Matcher<View> childAtPosition(
             }
         };
     }
+
     public static Matcher<View> withIndex(final Matcher<View> matcher, final int index) {
         return new TypeSafeMatcher<View>() {
             int currentIndex = 0;
@@ -195,7 +187,6 @@ public static Matcher<View> childAtPosition(
             }
         };
     }
-
 
     private static View findFirstParentLayoutOfClass(View view) {
         ViewParent parent = new FrameLayout(view.getContext());
@@ -243,7 +234,6 @@ public static Matcher<View> childAtPosition(
                     text[0] = textView.getText().toString();
                 }
             };
-
             matcher.perform(viewAction);
 
             return text[0];
@@ -271,17 +261,14 @@ public static Matcher<View> childAtPosition(
 
                 do {
                     for (View child : TreeIterables.breadthFirstViewTraversal(view)) {
-                        // found view with required ID
                         if (viewMatcher.matches(child)) {
                             return;
                         }
                     }
-
                     uiController.loopMainThreadForAtLeast(50);
                 }
                 while (System.currentTimeMillis() < endTime);
 
-                // timeout happens
                 throw new PerformException.Builder()
                         .withActionDescription(this.getDescription())
                         .withViewDescription(HumanReadables.describe(view))
@@ -312,21 +299,17 @@ public static Matcher<View> childAtPosition(
 
                 do {
                     for (View child : TreeIterables.breadthFirstViewTraversal(view)) {
-                        try { // found view with required ID
+                        try {
                             if (viewMatcher.matches(child)) {
                                 return;
                             }
                         } catch (NoMatchingViewException e) {
-                            // ignore
                         }
-
                         uiController.loopMainThreadForAtLeast(50);
                     }
-
                 }
                 while (System.currentTimeMillis() < endTime);
 
-                // timeout happens
                 throw new PerformException.Builder()
                         .withActionDescription(this.getDescription())
                         .withViewDescription(HumanReadables.describe(view))
@@ -334,7 +317,6 @@ public static Matcher<View> childAtPosition(
                         .build();
             }
         };
-
     }
 
     public static void elementWaiting(Matcher matcher, int millis) {
@@ -359,7 +341,45 @@ public static Matcher<View> childAtPosition(
             }
         };
     }
-//    public static void waitUntilVisible(View view) {
+
+
+    public static ViewAction nestedScrollTo() {
+        return new ViewAction() {
+
+            @Override
+            public Matcher<View> getConstraints() {
+                return allOf(
+                        isDescendantOfA(isAssignableFrom(NestedScrollView.class)),
+                        withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE));
+            }
+
+            @Override
+            public String getDescription() {
+                return "View is not NestedScrollView";
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                try {
+                    NestedScrollView nestedScrollView = (NestedScrollView)
+                            findFirstParentLayoutOfClass(view);
+                    if (nestedScrollView != null) {
+                        nestedScrollView.scrollTo(0, view.getTop());
+                    } else {
+                        throw new Exception("Unable to find NestedScrollView parent.");
+                    }
+                } catch (Exception e) {
+                    throw new PerformException.Builder()
+                            .withActionDescription(this.getDescription())
+                            .withViewDescription(HumanReadables.describe(view))
+                            .withCause(e)
+                            .build();
+                }
+                uiController.loopMainThreadUntilIdle();
+            }
+        };
+    }
+    //    public static void waitUntilVisible(View view) {
 //        final CountDownLatch latch = new CountDownLatch(1);
 //        ViewTreeObserver observer = view.getViewTreeObserver();
 //        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -376,41 +396,4 @@ public static Matcher<View> childAtPosition(
 //            e.printStackTrace();
 //        }
 //    }
-public static ViewAction nestedScrollTo() {
-    return new ViewAction() {
-
-        @Override
-        public Matcher<View> getConstraints() {
-            return allOf(
-                    isDescendantOfA(isAssignableFrom(NestedScrollView.class)),
-                    withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE));
-        }
-
-        @Override
-        public String getDescription() {
-            return "View is not NestedScrollView";
-        }
-
-        @Override
-        public void perform(UiController uiController, View view) {
-            try {
-                NestedScrollView nestedScrollView = (NestedScrollView)
-                        findFirstParentLayoutOfClass(view);
-                if (nestedScrollView != null) {
-                    nestedScrollView.scrollTo(0, view.getTop());
-                } else {
-                    throw new Exception("Unable to find NestedScrollView parent.");
-                }
-            } catch (Exception e) {
-                throw new PerformException.Builder()
-                        .withActionDescription(this.getDescription())
-                        .withViewDescription(HumanReadables.describe(view))
-                        .withCause(e)
-                        .build();
-            }
-            uiController.loopMainThreadUntilIdle();
-        }
-
-    };
-}
 }

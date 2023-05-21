@@ -2,9 +2,7 @@ package ru.netology.tests;
 
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 import static ru.netology.data.DataHelper.nestedScrollTo;
 
@@ -19,21 +17,20 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
+
 import ru.iteco.fmhandroid.ui.AppActivity;
-import ru.netology.pages.AboutPage;
 import ru.netology.pages.AuthPage;
 import ru.netology.pages.ClaimPage;
 import ru.netology.pages.ClaimsPage;
 import ru.netology.pages.CreateClaimPage;
 import ru.netology.pages.MainScreenPage;
-import ru.netology.pages.NewsPage;
-import ru.netology.pages.OurMissionPage;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 
-public class ClaimsPageTest {
+public class ClaimsPageUnitTests {
     MainScreenPage mainScreenPage = new MainScreenPage();
     AuthPage pageAuth = new AuthPage();
     ClaimPage claimPage = new ClaimPage();
@@ -77,7 +74,7 @@ public class ClaimsPageTest {
 
     @Test
     @DisplayName("23.Выбрать фильтр по статусу  Open")
-    public void tesFilterOpen() {
+    public void testFilterOpen() {
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));
         claimsPage.claimsFilterButton.perform(click());
         filterClaimsWindow.checkFilterScreenLoaded();
@@ -156,7 +153,8 @@ public class ClaimsPageTest {
 
     @Test
     @DisplayName("33. Взять в работу заявку Open - Take to work")
-    public void testToMain() {
+    @Description("Иногда падает с ошибкой приложения Somthing went wrong")
+    public void testToWork() {
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));
         claimsPage.claimsFilterButton.perform(click());
         filterClaimsWindow.checkFilterScreenLoaded();
@@ -166,6 +164,7 @@ public class ClaimsPageTest {
         filterClaimsWindow.uncheckCanceled();
         filterClaimsWindow.cLickOk();
         claimsPage.openClaim(0);
+        claimPage.statusChangeButton.perform(nestedScrollTo());
         claimPage.statusChangeButton.perform(click());
         claimPage.takeToWork.perform(click());
         claimPage.checkClaimStatusLoaded();
@@ -174,7 +173,8 @@ public class ClaimsPageTest {
 
     @Test
     @DisplayName("34. Отклонить заявку Open - Cancel")
-    public void testToClaims() {
+    @Description("Иногда падает. Статус меняется обратно")
+    public void testToCancel() {
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));
         claimsPage.claimsFilterButton.perform(click());
         filterClaimsWindow.checkFilterScreenLoaded();
@@ -184,6 +184,7 @@ public class ClaimsPageTest {
         filterClaimsWindow.uncheckCanceled();
         filterClaimsWindow.cLickOk();
         claimsPage.openClaim(0);
+        claimPage.statusChangeButton.perform(nestedScrollTo());
         claimPage.statusChangeButton.perform(click());
         claimPage.cancelClaim.perform(click());
         claimPage.checkClaimStatusLoaded();
@@ -192,7 +193,7 @@ public class ClaimsPageTest {
 
     @Test
     @DisplayName("35. Выполнить заявку In Progress - To execute")
-    public void testToNews() {
+    public void testToExecute() {
         String comment = "Done";
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));
         claimsPage.claimsFilterButton.perform(click());
@@ -213,7 +214,7 @@ public class ClaimsPageTest {
 
     @Test
     @DisplayName("36. Отказаться от заявки  (In Progress) - Throw off")
-    public void testToAbout() {
+    public void testToThrowOff() {
         String comment = "Done";
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));
         claimsPage.claimsFilterButton.perform(click());

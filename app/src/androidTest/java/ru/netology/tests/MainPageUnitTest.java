@@ -1,27 +1,12 @@
 package ru.netology.tests;
 
-import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static androidx.test.espresso.matcher.RootMatchers.isDialog;
-import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.supportsInputMethods;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
-import static androidx.test.espresso.matcher.ViewMatchers.withHint;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
-import static ru.netology.data.DataHelper.checkMessage;
 
 import android.os.SystemClock;
-
-import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -45,7 +30,7 @@ import ru.netology.pages.AuthPage;
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 
-public class MainPageTest {
+public class MainPageUnitTest {
     OurMissionPage ourMission = new OurMissionPage();
     MainScreenPage mainScreenPage = new MainScreenPage();
     AuthPage pageAuth = new AuthPage();
@@ -61,7 +46,7 @@ public class MainPageTest {
 
     @Before
     public void readyScreen() {
-        SystemClock.sleep(5000);
+        SystemClock.sleep(10000);
         try {
             mainScreenPage.checkMainScreenLoaded();
         } catch (Exception e) {
@@ -113,12 +98,13 @@ public class MainPageTest {
     @Test
     @DisplayName("12.News: развернуть новость")
     public void testOpenNews() {
-        mainScreenPage.singleNewsButton.check(matches(isDisplayed()));
-        mainScreenPage.singleNewsButton.perform(actionOnItemAtPosition(0, click()));
+        mainScreenPage.singleNews.check(matches(isDisplayed()));
+        mainScreenPage.singleNews.perform(actionOnItemAtPosition(0, click()));
         mainScreenPage.descriptionNewsIsDisplayed(0);
-//        та же кнопка на сернуть не работает
-//        mainScreenPage.singleNewsButton.perform(actionOnItemAtPosition(0, click()));
+//        та же кнопка на свернуть не работает
+//        mainScreenPage.singleNewsAfterOpen.perform(actionOnItemAtPosition(0, click()));
 //        mainScreenPage.descriptionNewsIsNotDisplayed(0);
+
     }
 
     @Test

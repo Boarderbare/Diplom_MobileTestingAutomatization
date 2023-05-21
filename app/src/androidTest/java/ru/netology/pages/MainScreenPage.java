@@ -49,8 +49,13 @@ public class MainScreenPage {
     public ViewInteraction news = onView(withText("News"));
     public ViewInteraction newsUnit = onView(withId(R.id.news_list_recycler_view));
     public ViewInteraction allNewsButton = onView(withId(R.id.all_news_text_view));
-    public ViewInteraction singleNewsButton = onView(allOf(withId(R.id.news_list_recycler_view),
+    public ViewInteraction singleNews = onView(allOf(withId(R.id.news_list_recycler_view),
             childAtPosition(withId(R.id.all_news_cards_block_constraint_layout), 0)));
+    public ViewInteraction singleNewsAfterOpen = onView(
+            allOf(withId(R.id.news_list_recycler_view),
+                    childAtPosition(
+                            withId(R.id.all_news_cards_block_constraint_layout),
+                            0)));
     public ViewInteraction unitNewsButton = onView(
             allOf(withId(R.id.expand_material_button),
                     childAtPosition(
@@ -75,12 +80,12 @@ public class MainScreenPage {
                                     withId(R.id.container_list_claim_include_on_fragment_main),
                                     0),
                             3)));
-//    public ViewInteraction claimList = onView(
-//            allOf(withId(R.id.claim_list_recycler_view),
-//                    childAtPosition(
-//                            withClassName(is("android.widget.LinearLayout")),
-//                            withId(R.id.all_claims_cards_block_constraint_layout),
-//                            4)));
+    public ViewInteraction claimList = onView(
+            allOf(withId(R.id.claim_list_recycler_view),
+                    childAtPosition(
+                            withClassName(is("android.widget.LinearLayout")),
+                            withId(R.id.all_claims_cards_block_constraint_layout),
+                            4)));
 
     NewsPage newsPage = new NewsPage();
     ClaimsPage claimsPage = new ClaimsPage();
@@ -108,7 +113,6 @@ public class MainScreenPage {
         menuButton.perform(click());
         menuClaims.check(matches(isDisplayed()));
         menuClaims.perform(click());
-//        claimsPage.checkClaimsScreenLoaded();
     }
 
     public void goToNews() {
@@ -116,27 +120,13 @@ public class MainScreenPage {
         menuButton.perform(click());
         menuNews.check(matches(isDisplayed()));
         menuNews.perform(click());
-//        newsPage.checkNewsScreenLoaded();
-    }
-
-    public void ourMissionButton() {
-        ourMissionButton.perform(click());
     }
 
     public void descriptionNewsIsDisplayed(int position) {
-        String descriptionText = DataHelper.
-                Text.getText(onView(withIndex(withId(R.id.news_item_description_text_view),
-                        position)));
-        ViewInteraction newsDescription = onView(
-                allOf(withId(R.id.news_item_description_text_view), withText(descriptionText)));
-        newsDescription.check(matches(isDisplayed()));
+        onView(withIndex(withId(R.id.news_item_description_text_view), position)).check(matches(isDisplayed()));
     }
 
     public void descriptionNewsIsNotDisplayed(int position) {
-        String descriptionText = DataHelper.
-                Text.getText(onView(withIndex(withId(R.id.news_item_description_text_view), position)));
-        ViewInteraction newsDescription = onView(
-                allOf(withId(R.id.news_item_description_text_view), withText(descriptionText)));
-        newsDescription.check(matches(not(isDisplayed())));
+        onView(withIndex(withId(R.id.news_item_description_text_view), position)).check(matches(not(isDisplayed())));
     }
 }

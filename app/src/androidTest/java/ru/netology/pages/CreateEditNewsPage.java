@@ -1,27 +1,21 @@
 package ru.netology.pages;
 
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withChild;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static ru.netology.data.DataHelper.childAtPosition;
 import static ru.netology.data.DataHelper.elementWaiting;
 
-import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
 
 import ru.iteco.fmhandroid.R;
-import ru.iteco.fmhandroid.dto.News;
-import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.is;
+
 public class CreateEditNewsPage {
 
     public ViewInteraction creatingNewsScreenName = onView(withText("Creating"));
@@ -36,12 +30,12 @@ public class CreateEditNewsPage {
     public ViewInteraction cancelButton = onView(withId(R.id.cancel_button));
     public ViewInteraction okButton = onView(withText("OK"));
     public ViewInteraction switcher = onView(withId(R.id.switcher));
+
     public ViewInteraction getEditNewsButtonByTitle(String title) {
         return onView(allOf(withId(R.id.edit_news_item_image_view),
                 withParent(withParent(allOf(withId(R.id.news_item_material_card_view),
                         withChild(withChild(withText(title))))))));
     }
-
 
     ControlPanelPage controlPanelPage = new ControlPanelPage();
 
@@ -68,9 +62,9 @@ public class CreateEditNewsPage {
         timeField.check(matches(isDisplayed()));
         descriptionField.check(matches(isDisplayed()));
         switcher.check(matches(isDisplayed()));
-
     }
-    public void checkNewsExists(String category, String title, String date, String time, String description ) {
+
+    public void checkNewsExists(String category, String title, String date, String time, String description) {
         titleField.check(matches(withText(title)));
         publicationDateField.check(matches(withText(date)));
         timeField.check(matches(withText(time)));
@@ -79,18 +73,19 @@ public class CreateEditNewsPage {
 
     public void saveNews() {
         saveButton.perform(click());
-
     }
-    public void fillInFormNews(String category, String title, String date, String time, String description ) {
+
+    public void cancelEdit() {
+        cancelButton.perform(click());
+        okButton.perform(click());
+    }
+
+    public void fillInFormNews(String category, String title, String date, String time, String description) {
         // не удалось найти слектор в дропдауне категорий поэтому категория вручную заполняется.
         categoryField.perform(replaceText(category));
         titleField.perform(replaceText(title));
         publicationDateField.perform(replaceText(date));
         timeField.perform(replaceText(time));
         descriptionField.perform(replaceText(description));
-        saveNews();
     }
-
-//            okButton.check(matches(isDisplayed()));
-//        okButton.perform(click());
 }

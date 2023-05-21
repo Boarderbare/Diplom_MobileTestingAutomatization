@@ -17,8 +17,10 @@ public class Resources {
     public String time = "15:00";
     public String emptyField = "";
 
-    public String executor = "executor123";
     public String comment = "comment123456";
     public String comment2 = "comment1234567";
+
+    public  String startDate = "01.05.2023";
+    public  String endDate = "02.05.2023";
 
 }

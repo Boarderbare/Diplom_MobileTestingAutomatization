@@ -12,6 +12,7 @@ import static ru.netology.data.DataHelper.elementWaiting;
 
 import androidx.test.espresso.ViewInteraction;
 
+import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 
 public class CreateClaimPage {
@@ -32,6 +33,7 @@ public class CreateClaimPage {
     ClaimPage claimPage = new ClaimPage();
 
     public void checkCreateClaimScreenLoaded() {
+        Allure.step("Проверка загрузки экарана создания заявки");
         elementWaiting(withText("Creating"), 2000);
         creatingClaimsScreenName.check(matches(isDisplayed()));
         creatingClaimsScreenName2.check(matches(isDisplayed()));
@@ -45,6 +47,7 @@ public class CreateClaimPage {
     }
 
     public void checkEditClaimScreenLoaded() {
+        Allure.step("Проверка загрузки экарана редактирования заявки");
         elementWaiting(withText("Editing"), 2000);
         editingClaimsScreenName.check(matches(isDisplayed()));
         creatingClaimsScreenName2.check(matches(isDisplayed()));
@@ -58,27 +61,32 @@ public class CreateClaimPage {
     }
 
     public void fillInTitle(String title) {
+        Allure.step("Заполнение поля title");
         titleField.perform(replaceText(title));
     }
 
     public void fillInExecutor(String executor) {
+        Allure.step("Заполнение поля executor");
         executorField.perform(replaceText(executor));
     }
 
     public void fillInDate(String date) {
+        Allure.step("Заполнение поля date");
         claimDateField.perform(replaceText(date));
     }
 
     public void fillInTime(String time) {
+        Allure.step("Заполнение поля time");
         claimTimeField.perform(replaceText(time));
     }
 
     public void fillItDescription(String description) {
+        Allure.step("Заполнение поля description");
         claimDescriptionField.perform(replaceText(description));
     }
 
     public void saveClaim() {
+        Allure.step("Сохранить заявку");
         saveButton.perform(click());
-        claimPage.checkClaimScreenLoaded();
     }
 }

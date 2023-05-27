@@ -14,6 +14,7 @@ import static ru.netology.data.DataHelper.withIndex;
 
 import androidx.test.espresso.ViewInteraction;
 
+import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 
 public class ClaimsPage {
@@ -30,6 +31,7 @@ public class ClaimsPage {
     ClaimPage claimPage = new ClaimPage();
 
     public void checkClaimsScreenLoaded() {
+        Allure.step("Проверка загрузки экрана с заявками");
         elementWaiting(withText("Claims"), 5000);
         claimsScreenName.check(matches(isDisplayed()));
         claimsFilterButton.check(matches(isDisplayed()));
@@ -38,11 +40,13 @@ public class ClaimsPage {
     }
 
     public void openClaim(int index) {
+        Allure.step("Открыть заявку");
         onView(withIndex(withId(openClaimButton), index)).perform(click());
         claimPage.checkClaimScreenLoaded();
     }
 
     public void emptyClaimList() {
+        Allure.step("Проверка отображения пустого списка");
         elementWaiting(withId(emptyList), 5000);
         nothingToShowWarning.check(matches(isDisplayed()));
         refreshButton.check(matches(isDisplayed()));
@@ -59,6 +63,7 @@ public class ClaimsPage {
         public ViewInteraction cancelButton = onView(allOf(withId(R.id.claim_filter_cancel_material_button)));
 
         public void checkFilterScreenLoaded() {
+            Allure.step("Проверка отображения загрузки экрана с фильтрами");
             elementWaiting(withText("Filtering"), 5000);
             screenName.check(matches(isDisplayed()));
             openCheckBox.check(matches(isDisplayed()));
@@ -70,38 +75,47 @@ public class ClaimsPage {
         }
 
         public void checkOpen() {
+            Allure.step("Выбрать фильтр open");
             openCheckBox.check(matches(isChecked()));
         }
 
         public void uncheckOpen() {
+            Allure.step("Снять фильтр open");
             openCheckBox.check(matches(isChecked())).perform(click());
         }
 
         public void checkInProgress() {
+            Allure.step("Выбрать фильтр In progress");
             inProgressCheckBox.check(matches(isChecked()));
         }
 
         public void uncheckInProgress() {
+            Allure.step("Снять фильтр In progress");
             inProgressCheckBox.check(matches(isChecked())).perform(click());
         }
 
         public void checkExecuted() {
+            Allure.step("Выбрать фильтр Executed");
             executedCheckBox.check(matches(isNotChecked())).perform(click());
         }
 
         public void uncheckExecuted() {
+            Allure.step("Снять фильтр Executed");
             executedCheckBox.check(matches(isNotChecked()));
         }
 
         public void checkCanceled() {
+            Allure.step("Выбрать фильтр Cancel");
             cancelledCheckBox.check(matches(isNotChecked())).perform(click());
         }
 
         public void uncheckCanceled() {
+            Allure.step("Снть фильтр Cancel");
             cancelledCheckBox.check(matches(isNotChecked()));
         }
 
         public void cLickOk() {
+            Allure.step("Кликнуть ОК");
             okButton.perform(click());
             elementWaiting(withId(R.id.claim_list_recycler_view), 5000);
         }

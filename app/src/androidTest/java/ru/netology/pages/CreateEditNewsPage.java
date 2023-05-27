@@ -14,6 +14,7 @@ import static ru.netology.data.DataHelper.elementWaiting;
 
 import androidx.test.espresso.ViewInteraction;
 
+import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 
 public class CreateEditNewsPage {
@@ -40,6 +41,7 @@ public class CreateEditNewsPage {
     ControlPanelPage controlPanelPage = new ControlPanelPage();
 
     public void checkCreateNewsScreenLoaded() {
+        Allure.step("Проверка загрузки экарана создания новости");
         elementWaiting(withText("Creating"), 5000);
         creatingNewsScreenName.check(matches(isDisplayed()));
         newsScreenName.check(matches(isDisplayed()));
@@ -53,6 +55,7 @@ public class CreateEditNewsPage {
     }
 
     public void checkEditNewsScreenLoaded() {
+        Allure.step("Проверка загрузки экарана редактирования новости");
         elementWaiting(withText("Editing"), 5000);
         editingNewsScreenName.check(matches(isDisplayed()));
         newsScreenName.check(matches(isDisplayed()));
@@ -65,6 +68,7 @@ public class CreateEditNewsPage {
     }
 
     public void checkNewsExists(String category, String title, String date, String time, String description) {
+        Allure.step("Проверка полей новости");
         titleField.check(matches(withText(title)));
         publicationDateField.check(matches(withText(date)));
         timeField.check(matches(withText(time)));
@@ -72,16 +76,19 @@ public class CreateEditNewsPage {
     }
 
     public void saveNews() {
+        Allure.step("Сохранить");
         saveButton.perform(click());
     }
 
     public void cancelEdit() {
+        Allure.step("Отменить редактирование");
         cancelButton.perform(click());
         okButton.perform(click());
     }
 
     public void fillInFormNews(String category, String title, String date, String time, String description) {
         // не удалось найти слектор в дропдауне категорий поэтому категория вручную заполняется.
+        Allure.step("Заполнение полей новости");
         categoryField.perform(replaceText(category));
         titleField.perform(replaceText(title));
         publicationDateField.perform(replaceText(date));

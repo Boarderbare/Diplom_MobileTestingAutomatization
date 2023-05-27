@@ -16,6 +16,7 @@ import static ru.netology.data.DataHelper.withIndex;
 
 import androidx.test.espresso.ViewInteraction;
 
+import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 import ru.netology.data.DataHelper;
 
@@ -37,7 +38,6 @@ public class ClaimPage {
     public ViewInteraction createdLabel = onView(withId(R.id.create_data_label_text_view));
     public ViewInteraction dateCreated = onView(withId(R.id.create_data_text_view));
     public ViewInteraction timeCreated = onView(withId(R.id.create_time_text_view));
-    //    public ViewInteraction addCommentButton = onView(withId(R.id.status_label_text_view));
     public ViewInteraction editClaimButton = onView(withId(R.id.edit_processing_image_button));
     public ViewInteraction statusChangeButton = onView(withId(R.id.status_processing_image_button));
     public ViewInteraction exitClaimButton = onView(withId(R.id.close_image_button));
@@ -56,6 +56,7 @@ public class ClaimPage {
     public ViewInteraction textComment = onView(withText(R.id.comment_description_text_view));
 
     public void checkClaimScreenLoaded() {
+        Allure.step("Проверка загрузки экрана отдельной заявки");
         elementWaiting(withText("Title"), 5000);
         titleLabel.check(matches(isDisplayed()));
         title.check(matches(isDisplayed()));
@@ -104,29 +105,35 @@ public class ClaimPage {
     }
 
     public void addCommentWhenStatusChange(String comment) {
+        Allure.step("Добавление комментария при смене статуса");
         editTextComment.perform(replaceText(comment));
         editTextCommentOkButton.perform(click());
     }
 
     public void addComment(String comment) {
+        Allure.step("Добавление нового комментария");
         editCommentField.perform(click()).perform(replaceText(comment));
         editCommentSaveButton.perform(click());
     }
 
     public void checkClaimStatusLoaded() {
+        Allure.step("Проверка отображения статуса заявки");
         elementWaiting(withId(R.id.status_label_text_view), 5000);
         status.check(matches(isDisplayed()));
     }
 
     public void checkCommentFieldLoaded() {
+        Allure.step("Проверка отображения поля комментария");
         elementWaiting(withId(R.id.editText), 5000);
     }
 
     public void checkCommentLoaded() {
+        Allure.step("Проверка отображения поля комментария при смене статуса");
         elementWaiting(withId(R.id.comment_text_input_layout), 5000);
     }
 
     public void checkCreatedClaimElement(String title, String date, String time, String description) {
+        Allure.step("Проверка полей заявки");
         assertEquals(title, getClaimTitle());
         assertEquals(date, getClaimDate());
         assertEquals(time, getClaimTime());
@@ -134,6 +141,7 @@ public class ClaimPage {
     }
 
     public void checkComment(String comment) {
+        Allure.step("Проверка текста в поле комментария");
         onView(allOf(withId(R.id.comment_description_text_view), withText(comment))).
                 check(matches(isDisplayed()));
     }

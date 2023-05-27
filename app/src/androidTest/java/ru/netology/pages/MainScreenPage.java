@@ -25,6 +25,7 @@ import androidx.test.espresso.ViewInteraction;
 
 import org.hamcrest.core.IsInstanceOf;
 
+import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 import ru.netology.data.DataHelper;
 
@@ -91,10 +92,12 @@ public class MainScreenPage {
     ClaimsPage claimsPage = new ClaimsPage();
 
     public void checkMainScreenLoaded() {
+        Allure.step("Проверка загрузки основного экраа");
         elementWaiting(withText("News"), 5000);
     }
 
     public void isMainScreen() {
+        Allure.step("Проверка полей основного экраа");
         tradeMark.check(matches(isDisplayed()));
         news.check(matches(isDisplayed()));
         newsUnit.check(matches(isDisplayed()));
@@ -103,12 +106,14 @@ public class MainScreenPage {
     }
 
     public void logOut() {
+        Allure.step("Логаут");
         logOutButton.perform(click());
         logOut.check(matches(isDisplayed()));
         logOut.perform(click());
     }
 
     public void goToClaims() {
+        Allure.step("Переход в раздел заявки");
         menuButton.check(matches(isDisplayed()));
         menuButton.perform(click());
         menuClaims.check(matches(isDisplayed()));
@@ -116,21 +121,26 @@ public class MainScreenPage {
     }
 
     public void goToNews() {
+        Allure.step("Переход в раздел новостей");
         menuButton.check(matches(isDisplayed()));
         menuButton.perform(click());
         menuNews.check(matches(isDisplayed()));
         menuNews.perform(click());
     }
+
     public void goOurMission() {
+        Allure.step("Переход в раздел \"Наша миссия\"");
         ourMissionButton.check(matches(isDisplayed()));
         ourMissionButton.perform(click());
     }
 
     public void descriptionNewsIsDisplayed(int position) {
+        Allure.step("Проверка что описание отображается");
         onView(withIndex(withId(R.id.news_item_description_text_view), position)).check(matches(isDisplayed()));
     }
 
     public void descriptionNewsIsNotDisplayed(int position) {
+        Allure.step("Проверка что описание  не отображается");
         onView(withIndex(withId(R.id.news_item_description_text_view), position)).check(matches(not(isDisplayed())));
     }
 }

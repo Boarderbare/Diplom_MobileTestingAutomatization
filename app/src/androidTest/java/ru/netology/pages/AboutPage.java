@@ -9,6 +9,7 @@ import static ru.netology.data.DataHelper.elementWaiting;
 
 import androidx.test.espresso.ViewInteraction;
 
+import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 
 public class AboutPage {
@@ -24,7 +25,7 @@ public class AboutPage {
     public ViewInteraction returnButton = onView(withId(R.id.about_back_image_button));
 
     public void checkAboutScreenLoaded() {
-
+        Allure.step("Проверка загрузки экрана /'About/'");
         elementWaiting(withText("Version:"), 2000);
         tradeMarkImage.check(matches(isDisplayed()));
         version.check(matches(isDisplayed()));
@@ -36,10 +37,4 @@ public class AboutPage {
         companyInfo.check(matches(isDisplayed()));
         returnButton.check(matches(isDisplayed()));
     }
-
-    public void isOurMissiionScreen() {
-
-    }
-
-
 }

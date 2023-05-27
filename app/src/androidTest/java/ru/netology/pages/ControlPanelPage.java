@@ -13,6 +13,7 @@ import static ru.netology.data.DataHelper.withIndex;
 
 import androidx.test.espresso.ViewInteraction;
 
+import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 
 public class ControlPanelPage {
@@ -23,7 +24,6 @@ public class ControlPanelPage {
     public ViewInteraction createNewsButton = onView(withId(R.id.add_news_image_view));
     public ViewInteraction listOfNews = onView(withId(R.id.news_list_recycler_view));
     public ViewInteraction butterflyImageNews = onView(withId(R.id.empty_news_list_image_view));
-
     // первая новость в списке
     public ViewInteraction deleteNewsButton = onView(withIndex(withId(R.id.delete_news_item_image_view), 0));
     public ViewInteraction editNewsButton = onView(withIndex(withId(R.id.edit_news_item_image_view), 0));
@@ -44,6 +44,7 @@ public class ControlPanelPage {
     public ViewInteraction okButton = onView(withText("OK"));
 
     public void checkControlPanelScreenLoaded() {
+        Allure.step("Проверка загрузки страницы Control panel");
         elementWaiting(withText("Control panel"), 5000);
         controlPanelScreenName.check(matches(isDisplayed()));
         sortButton.check(matches(isDisplayed()));
@@ -53,10 +54,12 @@ public class ControlPanelPage {
     }
 
     public void checkListNewsLoaded() {
+        Allure.step("Проверка загрузки списка новостей");
         elementWaiting(withId(R.id.news_list_recycler_view), 5000);
     }
 
     public void checkItemScreenLoaded() {
+        Allure.step("Проверка загрузки страницы новости");
         newsItemTitle.check(matches(isDisplayed()));
         deleteNewsButton.check(matches(isDisplayed()));
         editNewsButton.check(matches(isDisplayed()));
@@ -69,11 +72,13 @@ public class ControlPanelPage {
     }
 
     public void deleteNews() {
+        Allure.step("Удалить новость");
         deleteNewsButton.perform(click());
         okButton.perform(click());
     }
 
     public void checkDescriptionAndDate(String title, String date) {
+        Allure.step("Сравнение описания и даты");
         onView(allOf(withId(R.id.news_item_title_text_view), withText(title))).
                 check(matches(isDisplayed()));
 //  падает. нужно проверять в последнем блоке title  и дату. Непонятно как искать последний блок
@@ -81,11 +86,13 @@ public class ControlPanelPage {
 //                check(matches(isDisplayed()));
     }
 
-    public void checkNewsStatus(String title) {
+    public void checkNewsNotDisplayed(String title) {
+        Allure.step("Проверка что новость не отображается");
         onView(allOf(withText(title))).check(matches(not(isDisplayed())));
     }
 
     public void chooseFirstNews() {
+        Allure.step("Выбрать первую новость");
         newsCard.perform(click());
     }
 }

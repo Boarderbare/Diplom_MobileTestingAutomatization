@@ -16,6 +16,7 @@ import static org.hamcrest.Matchers.is;
 
 import androidx.test.espresso.ViewInteraction;
 
+import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 
 public class NewsPage {
@@ -32,6 +33,7 @@ public class NewsPage {
     public ViewInteraction descriptionFirstNews = onView(withIndex(withId(R.id.news_item_description_text_view), 0));
 
     public void checkNewsScreenLoaded() {
+        Allure.step("Проверка загрузки экрана с новостями");
         elementWaiting(withText("News"), 5000);
         newsScreenName.check(matches(isDisplayed()));
         sortNewsButton.check(matches(isDisplayed()));
@@ -40,15 +42,18 @@ public class NewsPage {
     }
 
     public void checkListNewsLoaded() {
+        Allure.step("Проверка отображения списка новостей");
         elementWaiting(withId(newsList), 5000);
     }
 
     public void checkDescriptionView(String text) {
+        Allure.step("Проверка отображения описания с текстом");
         onView(allOf(withId(R.id.news_item_title_text_view), withText(text))).
                 check(matches(isDisplayed()));
     }
 
     public void goToControlPanel() {
+        Allure.step("Переход  в ControlPanel");
         editButton.perform(click());
         controlPanelPage.checkControlPanelScreenLoaded();
     }

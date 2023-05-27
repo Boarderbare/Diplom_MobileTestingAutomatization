@@ -14,6 +14,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.R;
@@ -22,8 +23,9 @@ import ru.netology.data.DataHelper;
 import ru.netology.pages.AuthPage;
 import ru.netology.pages.MainScreenPage;
 
+
 @LargeTest
-@RunWith(AndroidJUnit4.class)
+@RunWith(AllureAndroidJUnit4.class)
 
 public class AuthUnitTest {
     AuthPage authPage = new AuthPage();
@@ -57,8 +59,8 @@ public class AuthUnitTest {
 
     @Test
     @Ignore
-    @Description("Зависает. Не работает проверка всплывающих сообщений")
     @DisplayName("3.Вход в личный кабинет с пустым логином")
+    @Description("Зависает. Не работает проверка всплывающих сообщений")
     public void testAuthEmptyLogin() {
         authPage.enterLogin(DataHelper.AuthInfo.emptyLogin().getLogin());
         authPage.enterPassword(DataHelper.AuthInfo.validAuth().getPass());
@@ -71,8 +73,8 @@ public class AuthUnitTest {
 
     @Test
     @Ignore
-    @Description("Зависает. Не работает проверка всплывающих сообщений")
     @DisplayName("4.Вход в личный кабинет с пустым паролем")
+    @Description("Зависает. Не работает проверка всплывающих сообщений")
     public void testAuthEmptyPassword() {
         authPage.enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
         authPage.enterPassword(DataHelper.AuthInfo.emptyPassword().getPass());
@@ -82,8 +84,8 @@ public class AuthUnitTest {
 
     @Test
     @Ignore
-    @Description("Зависает. Не работает проверка всплывающих сообщений")
     @DisplayName("5.Вход в личный кабинет с неверным логином")
+    @Description("Зависает. Не работает проверка всплывающих сообщений")
     public void testAuthInvalidLogin() {
         authPage.enterLogin(DataHelper.AuthInfo.wrongLogin().getLogin());
         authPage.enterPassword(DataHelper.AuthInfo.validAuth().getPass());
@@ -93,8 +95,8 @@ public class AuthUnitTest {
 
     @Test
     @Ignore
-    @Description("Зависает. Не работает проверка всплывающих сообщений")
     @DisplayName("6.Вход в личный кабинет с неверным паролем")
+    @Description("Зависает. Не работает проверка всплывающих сообщений")
     public void testAuthInvalidPassword() {
         authPage.enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
         authPage.enterPassword(DataHelper.AuthInfo.wrongPassword().getPass());

@@ -15,6 +15,7 @@ import static org.hamcrest.Matchers.allOf;
 
 import androidx.test.espresso.ViewInteraction;
 
+import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 import ru.netology.data.DataHelper;
 
@@ -36,10 +37,12 @@ public class AuthPage {
     MainScreenPage mainScreenPage = new MainScreenPage();
 
     public void checkLoadScreen() {
+        Allure.step("Проверка загрузки экрана авторизации");
         elementWaiting(withId(R.id.enter_button), 10000);
     }
 
     public void isAuthScreen() {
+        Allure.step("Проверка элементтов экрана авторизации");
         screenName.check(matches(isDisplayed()));
         loginField.check(matches(isDisplayed()));
         passField.check(matches(isDisplayed()));
@@ -47,6 +50,7 @@ public class AuthPage {
     }
 
     public void login() {
+        Allure.step("Login");
         enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
         enterPassword(DataHelper.AuthInfo.validAuth().getPass());
         signIn();
@@ -65,6 +69,8 @@ public class AuthPage {
     public void signIn() {
         signButton.perform(click());
     }
+
+//  проверка всплывающего сообщения не работает
 //    public void checkEmptyMessage() {
 //        dataHelper.checkMessage(massageIdEmptyAuth).check(matches(isDisplayed()));
 

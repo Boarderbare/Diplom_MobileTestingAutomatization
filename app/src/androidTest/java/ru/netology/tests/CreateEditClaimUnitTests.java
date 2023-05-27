@@ -17,6 +17,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 
 import ru.iteco.fmhandroid.ui.AppActivity;
@@ -62,24 +63,37 @@ public class CreateEditClaimUnitTests {
     String title = resources.title;
     String description = resources.description;
     String date = resources.date;
+    String date2 = resources.date2;
     String time = resources.time;
     String comment = resources.comment;
     String comment2 = resources.comment2;
 
     @Test
-    @Ignore  //в приложении не появляется новая заявка наверху списка.
     @DisplayName("29.Создание новой заявки")
-    public void testCreateClaim() {
+     public void testCreateClaim() {
         claimsPage.createClaimButton.perform(click());
         createClaimPage.checkCreateClaimScreenLoaded();
         createClaimPage.fillInTitle(title);
-        createClaimPage.fillInDate(date);
+        createClaimPage.fillInDate(date2);
         createClaimPage.fillInTime(time);
         createClaimPage.fillItDescription(description);
         createClaimPage.saveClaim();
         claimsPage.checkClaimsScreenLoaded();
+        //ищем заявку в Open
+        claimsPage.claimsFilterButton.check(matches(isDisplayed()));
+        claimsPage.claimsFilterButton.perform(click());
+        filterClaimsWindow.checkFilterScreenLoaded();
+        filterClaimsWindow.checkOpen();
+        filterClaimsWindow.uncheckInProgress();
+        filterClaimsWindow.uncheckExecuted();
+        filterClaimsWindow.uncheckCanceled();
+        filterClaimsWindow.cLickOk();
+        //проверяем
         claimsPage.openClaim(0);
-        claimPage.checkCreatedClaimElement(title, description, date, time);
+        claimPage.checkCreatedClaimElement(title,  date2, time, description);
+        // отменяем заявку
+        claimPage.statusChangeButton.perform(click());
+        claimPage.cancelClaim.perform(click());
     }
 
     @Test
@@ -102,6 +116,7 @@ public class CreateEditClaimUnitTests {
         createClaimPage.fillInTime(time);
         createClaimPage.fillItDescription(description);
         createClaimPage.saveClaim();
+        claimPage.checkClaimScreenLoaded();
         claimPage.title.perform(swipeDown());
         claimPage.checkCreatedClaimElement(title, date, time, description);
     }

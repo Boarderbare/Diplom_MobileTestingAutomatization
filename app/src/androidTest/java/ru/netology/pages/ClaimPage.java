@@ -14,6 +14,8 @@ import static org.junit.Assert.assertEquals;
 import static ru.netology.data.DataHelper.elementWaiting;
 import static ru.netology.data.DataHelper.withIndex;
 
+import android.os.SystemClock;
+
 import androidx.test.espresso.ViewInteraction;
 
 import io.qameta.allure.kotlin.Allure;
@@ -118,7 +120,9 @@ public class ClaimPage {
 
     public void checkClaimStatusLoaded() {
         Allure.step("Проверка отображения статуса заявки");
-        elementWaiting(withId(R.id.status_label_text_view), 5000);
+//        elementWaiting(withId(R.id.status_icon_image_view), 5000);
+//        elementWaiting(withId(R.id.status_label_text_view), 5000);
+        SystemClock.sleep(2000);
         status.check(matches(isDisplayed()));
     }
 

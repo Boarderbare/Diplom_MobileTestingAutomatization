@@ -153,7 +153,7 @@ public class ClaimsPageUnitTests {
 
     @Test
     @DisplayName("33. Взять в работу заявку Open - Take to work")
-    @Description("Иногда падает с ошибкой приложения Somthing went wrong")
+    @Description("Иногда не проходит на эмуляторе. Ошибка Somthing went wrong. Статус не меняется")
     public void testToWork() {
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));
         claimsPage.claimsFilterButton.perform(click());
@@ -193,6 +193,7 @@ public class ClaimsPageUnitTests {
 
     @Test
     @DisplayName("35. Выполнить заявку In Progress - To execute")
+    @Description("Иногда не проходит на эмуляторе. Ошибка Somthing went wrong. Статус не меняется")
     public void testToExecute() {
         String comment = "Done";
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));
@@ -209,11 +210,13 @@ public class ClaimsPageUnitTests {
         claimPage.toExecuteClaim.perform(click());
         claimPage.checkCommentFieldLoaded();
         claimPage.addCommentWhenStatusChange(comment);
+        claimPage.checkClaimStatusLoaded();
         assertEquals("Executed", claimPage.getStatus());
     }
 
     @Test
     @DisplayName("36. Отказаться от заявки  (In Progress) - Throw off")
+    @Description("Иногда не проходит на эмуляторе. Ошибка Somthing went wrong. Статус не меняется")
     public void testToThrowOff() {
         String comment = "Done";
         claimsPage.claimsFilterButton.check(matches(isDisplayed()));
@@ -230,6 +233,7 @@ public class ClaimsPageUnitTests {
         claimPage.throwOffClaim.perform(click());
         claimPage.checkCommentFieldLoaded();
         claimPage.addCommentWhenStatusChange(comment);
+        claimPage.checkClaimStatusLoaded();
         assertEquals("Open", claimPage.getStatus());
     }
 }

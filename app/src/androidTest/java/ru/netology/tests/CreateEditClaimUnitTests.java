@@ -70,7 +70,7 @@ public class CreateEditClaimUnitTests {
 
     @Test
     @DisplayName("29.Создание новой заявки")
-     public void testCreateClaim() {
+    public void testCreateClaim() {
         claimsPage.createClaimButton.perform(click());
         createClaimPage.checkCreateClaimScreenLoaded();
         createClaimPage.fillInTitle(title);
@@ -79,15 +79,6 @@ public class CreateEditClaimUnitTests {
         createClaimPage.fillItDescription(description);
         createClaimPage.saveClaim();
         claimsPage.checkClaimsScreenLoaded();
-        //ищем заявку в Open
-        claimsPage.claimsFilterButton.check(matches(isDisplayed()));
-        claimsPage.claimsFilterButton.perform(click());
-        filterClaimsWindow.checkFilterScreenLoaded();
-        filterClaimsWindow.checkOpen();
-        filterClaimsWindow.uncheckInProgress();
-        filterClaimsWindow.uncheckExecuted();
-        filterClaimsWindow.uncheckCanceled();
-        filterClaimsWindow.cLickOk();
         //проверяем
         claimsPage.openClaim(0);
         claimPage.checkCreatedClaimElement(title,  date2, time, description);

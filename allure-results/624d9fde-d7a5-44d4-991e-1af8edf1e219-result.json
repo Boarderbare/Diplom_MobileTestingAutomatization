@@ -1,0 +1,53 @@
+{
+    "name": "38. News: фильтр по дате",
+    "start": 1685192123520,
+    "stop": 1685192141585,
+    "stage": "finished",
+    "description": null,
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "624d9fde-d7a5-44d4-991e-1af8edf1e219",
+    "historyId": "256a13a943e1cdef04173bfb6061af74",
+    "fullName": "ru.netology.tests.NewsUnitTests.testFilterNews",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.NewsUnitTests"
+        },
+        {
+            "name": "testMethod",
+            "value": "testFilterNews"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.NewsUnitTests"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(1981)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

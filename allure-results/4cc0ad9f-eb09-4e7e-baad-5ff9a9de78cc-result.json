@@ -1,0 +1,149 @@
+{
+    "name": "28.Открыть заявку",
+    "start": 1685277733044,
+    "stop": 1685277749722,
+    "stage": "finished",
+    "description": null,
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "Проверка загрузки основного экраа",
+            "start": 1685277741790,
+            "stop": 1685277741790,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Переход в раздел заявки",
+            "start": 1685277743553,
+            "stop": 1685277743553,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверка загрузки экрана с заявками",
+            "start": 1685277744522,
+            "stop": 1685277744522,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Открыть заявку",
+            "start": 1685277745887,
+            "stop": 1685277745887,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверка загрузки экрана отдельной заявки",
+            "start": 1685277746210,
+            "stop": 1685277746210,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверка загрузки экрана отдельной заявки",
+            "start": 1685277747480,
+            "stop": 1685277747480,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "4cc0ad9f-eb09-4e7e-baad-5ff9a9de78cc",
+    "historyId": "7b5eccac486bd6fb7fd313aaa867e15d",
+    "fullName": "ru.netology.tests.ClaimsPageUnitTests.testOpenCloseUnitClaim",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.ClaimsPageUnitTests"
+        },
+        {
+            "name": "testMethod",
+            "value": "testOpenCloseUnitClaim"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.ClaimsPageUnitTests"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(2261)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

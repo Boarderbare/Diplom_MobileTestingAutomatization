@@ -1,0 +1,53 @@
+{
+    "name": "37. News: Сортировка",
+    "start": 1685191987643,
+    "stop": 1685192004250,
+    "stage": "finished",
+    "description": null,
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "f98046ca-4ed0-4a4a-b46c-ee2752e7e6ef",
+    "historyId": "3e2c51be1d6e13c16dc26ea42213c0c9",
+    "fullName": "ru.netology.tests.NewsUnitTests.testSortNews",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.NewsUnitTests"
+        },
+        {
+            "name": "testMethod",
+            "value": "testSortNews"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.NewsUnitTests"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(1981)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

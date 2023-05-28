@@ -1,0 +1,117 @@
+{
+    "name": "2.Вход в личный кабинет с валидными данными",
+    "start": 1685284250992,
+    "stop": 1685284269241,
+    "stage": "finished",
+    "description": null,
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "Проверка загрузки экрана авторизации",
+            "start": 1685284264472,
+            "stop": 1685284264472,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверка элементтов экрана авторизации",
+            "start": 1685284265824,
+            "stop": 1685284265824,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверка загрузки основного экраа",
+            "start": 1685284266191,
+            "stop": 1685284266191,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверка полей основного экраа",
+            "start": 1685284268291,
+            "stop": 1685284268291,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "5d607827-5a6c-4ab1-8ac2-fbe6a60f20f0",
+    "historyId": "af702dca72d26933d531456093ea31fa",
+    "fullName": "ru.netology.tests.AuthUnitTest.testAuthRight",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.AuthUnitTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "testAuthRight"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.AuthUnitTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(2506)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

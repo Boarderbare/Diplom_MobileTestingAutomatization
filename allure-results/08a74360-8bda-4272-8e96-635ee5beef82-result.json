@@ -1,0 +1,53 @@
+{
+    "name": "32. Редактирование комментария в заявке в статусе open",
+    "start": 1685191600002,
+    "stop": 1685191626669,
+    "stage": "finished",
+    "description": null,
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "08a74360-8bda-4272-8e96-635ee5beef82",
+    "historyId": "8fd8522168c8484b596929b99bd4a78c",
+    "fullName": "ru.netology.tests.CreateEditClaimUnitTests.testEditComment",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.CreateEditClaimUnitTests"
+        },
+        {
+            "name": "testMethod",
+            "value": "testEditComment"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.CreateEditClaimUnitTests"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(1981)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

@@ -1,0 +1,101 @@
+{
+    "name": "21.Menu: перейти в раздел About",
+    "start": 1685285493254,
+    "stop": 1685285512967,
+    "stage": "finished",
+    "description": null,
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "Проверка загрузки основного экраа",
+            "start": 1685285506889,
+            "stop": 1685285506889,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверка загрузки основного экраа",
+            "start": 1685285508655,
+            "stop": 1685285508655,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверка загрузки экрана /'About/'",
+            "start": 1685285511523,
+            "stop": 1685285511523,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "5fd27e1d-31df-44d4-8d6f-99dc6519e584",
+    "historyId": "2dd0ed5a35d5961fdd9900610e76392a",
+    "fullName": "ru.netology.tests.MainPageUnitTest.testToAbout",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.MainPageUnitTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "testToAbout"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.MainPageUnitTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(2527)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

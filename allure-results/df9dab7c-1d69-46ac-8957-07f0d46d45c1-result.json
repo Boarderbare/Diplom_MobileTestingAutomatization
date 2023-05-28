@@ -1,0 +1,53 @@
+{
+    "name": "33. Взять в работу заявку Open - Take to work",
+    "start": 1685191521861,
+    "stop": 1685191543552,
+    "stage": "finished",
+    "description": "Иногда падает с ошибкой приложения Somthing went wrong",
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "df9dab7c-1d69-46ac-8957-07f0d46d45c1",
+    "historyId": "eaf8f8fb07a2f00a6018d8132665ec11",
+    "fullName": "ru.netology.tests.ClaimsPageUnitTests.testToWork",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.ClaimsPageUnitTests"
+        },
+        {
+            "name": "testMethod",
+            "value": "testToWork"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.ClaimsPageUnitTests"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(1981)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

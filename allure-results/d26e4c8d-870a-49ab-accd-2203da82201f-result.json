@@ -1,0 +1,101 @@
+{
+    "name": "13.News: переход в раздел News",
+    "start": 1685277973260,
+    "stop": 1685277992479,
+    "stage": "finished",
+    "description": null,
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "Проверка загрузки основного экраа",
+            "start": 1685277986832,
+            "stop": 1685277986832,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверка загрузки основного экраа",
+            "start": 1685277988589,
+            "stop": 1685277988589,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверка загрузки экрана с новостями",
+            "start": 1685277990855,
+            "stop": 1685277990855,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "d26e4c8d-870a-49ab-accd-2203da82201f",
+    "historyId": "d4d452a1273f2f9c9e08dcbb1159a7f",
+    "fullName": "ru.netology.tests.MainPageUnitTest.testToAllNews",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.MainPageUnitTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "testToAllNews"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.MainPageUnitTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(2261)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

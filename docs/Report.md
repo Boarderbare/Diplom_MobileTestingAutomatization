@@ -9,8 +9,8 @@
 - Также выявились Flacky тесты, в которых периоически может не проходить проверка из-за ошибки
   в приложении (тесты смены статуса заявок).
 
-[Allure Report](https://github.com//)
-![](https://gi)
+[Allure Report](https://github.com/Boarderbare/Diplom_MobileTestingAutomatization/tree/main/allure-results)
+![](allure_report.png)
 
 В процессе тестирования мобильного приложения "Мобильный хоспис" было выявлены дефекты.
 Созданы соответствующие Issue.

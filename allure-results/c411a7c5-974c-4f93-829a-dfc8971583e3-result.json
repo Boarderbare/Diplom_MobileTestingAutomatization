@@ -1,0 +1,55 @@
+{
+    "name": "48. Control panel: Создание новой объявления. Поля не заполнены",
+    "start": 1685277933284,
+    "stop": 1685277933284,
+    "stage": "finished",
+    "description": "Проверка всплывающих сообщений не рабоает",
+    "descriptionHtml": null,
+    "status": "skipped",
+    "statusDetails": {
+        "message": "Test ignored (without reason)!"
+    },
+    "steps": [
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "c411a7c5-974c-4f93-829a-dfc8971583e3",
+    "historyId": "f84296d3b71232f0846bda73c411c3a1",
+    "fullName": "ru.netology.tests.CreateEditNewsUnitTests.testCreateNewsEmptyField",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.CreateEditNewsUnitTests"
+        },
+        {
+            "name": "testMethod",
+            "value": "testCreateNewsEmptyField"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.CreateEditNewsUnitTests"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(2261)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

@@ -1,0 +1,69 @@
+{
+    "name": "2.Вход в личный кабинет с валидными данными",
+    "start": 1685185991901,
+    "stop": 1685186007301,
+    "stage": "finished",
+    "description": null,
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "Проверка экрана авторизации",
+            "start": 1685186003925,
+            "stop": 1685186003925,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "5f6d58e8-7c00-4074-82ba-cb0085182f7c",
+    "historyId": "af702dca72d26933d531456093ea31fa",
+    "fullName": "ru.netology.tests.AuthUnitTest.testAuthRight",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.AuthUnitTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "testAuthRight"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.AuthUnitTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(1947)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

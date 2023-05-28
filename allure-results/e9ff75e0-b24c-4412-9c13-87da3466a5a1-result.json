@@ -1,0 +1,117 @@
+{
+    "name": "52. OurMission: Развернуть сернуть описание",
+    "start": 1685278360270,
+    "stop": 1685278374223,
+    "stage": "finished",
+    "description": null,
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "Проверка загрузки основного экраа",
+            "start": 1685278368831,
+            "stop": 1685278368831,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Переход в раздел \"Наша миссия\"",
+            "start": 1685278370598,
+            "stop": 1685278370598,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверка загрузки экрана \"Наша миссия\"",
+            "start": 1685278370931,
+            "stop": 1685278370932,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Проверка загрузки экрана \"Наша миссия\"",
+            "start": 1685278372856,
+            "stop": 1685278372856,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "e9ff75e0-b24c-4412-9c13-87da3466a5a1",
+    "historyId": "eb38e9667e244596f31e58f00c2a3ef5",
+    "fullName": "ru.netology.tests.OurMissionUnitTests.testOpenTopic",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.OurMissionUnitTests"
+        },
+        {
+            "name": "testMethod",
+            "value": "testOpenTopic"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.OurMissionUnitTests"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(2261)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

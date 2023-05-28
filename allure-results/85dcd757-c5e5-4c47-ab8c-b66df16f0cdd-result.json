@@ -1,0 +1,55 @@
+{
+    "name": "3.Вход в личный кабинет с пустым логином",
+    "start": 1685277557285,
+    "stop": 1685277557286,
+    "stage": "finished",
+    "description": "Зависает. Не работает проверка всплывающих сообщений",
+    "descriptionHtml": null,
+    "status": "skipped",
+    "statusDetails": {
+        "message": "Test ignored (without reason)!"
+    },
+    "steps": [
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "85dcd757-c5e5-4c47-ab8c-b66df16f0cdd",
+    "historyId": "d75d4951670c89ac0cd5441aedcbe959",
+    "fullName": "ru.netology.tests.AuthUnitTest.testAuthEmptyLogin",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.AuthUnitTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "testAuthEmptyLogin"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.AuthUnitTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(2261)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

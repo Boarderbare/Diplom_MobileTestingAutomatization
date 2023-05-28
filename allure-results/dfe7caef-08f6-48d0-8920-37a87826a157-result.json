@@ -1,0 +1,53 @@
+{
+    "name": "47. Control panel. Создание новой объявления",
+    "start": 1685191700752,
+    "stop": 1685191718832,
+    "stage": "finished",
+    "description": "Может падать, если  в списке новость не в числе первых трех",
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "dfe7caef-08f6-48d0-8920-37a87826a157",
+    "historyId": "b4b8de81fa02dc39878e254aa222dfd7",
+    "fullName": "ru.netology.tests.CreateEditNewsUnitTests.testCreateNews",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.CreateEditNewsUnitTests"
+        },
+        {
+            "name": "testMethod",
+            "value": "testCreateNews"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.CreateEditNewsUnitTests"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(1981)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

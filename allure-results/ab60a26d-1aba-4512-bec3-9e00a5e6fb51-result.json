@@ -1,0 +1,55 @@
+{
+    "name": "6.Вход в личный кабинет с неверным паролем",
+    "start": 1685277520171,
+    "stop": 1685277520171,
+    "stage": "finished",
+    "description": "Зависает. Не работает проверка всплывающих сообщений",
+    "descriptionHtml": null,
+    "status": "skipped",
+    "statusDetails": {
+        "message": "Test ignored (without reason)!"
+    },
+    "steps": [
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "ab60a26d-1aba-4512-bec3-9e00a5e6fb51",
+    "historyId": "460cef91e2d9d7c33940d948932c5b6",
+    "fullName": "ru.netology.tests.AuthUnitTest.testAuthInvalidPassword",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.tests.AuthUnitTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "testAuthInvalidPassword"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.tests.AuthUnitTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(2261)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

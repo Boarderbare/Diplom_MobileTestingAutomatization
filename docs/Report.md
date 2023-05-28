@@ -10,6 +10,7 @@
   в приложении (тесты смены статуса заявок) - 1 такой тест в report.
 
 [Allure Report](https://github.com/Boarderbare/Diplom_MobileTestingAutomatization/tree/main/allure-results)
+
 ![](https://github.com/Boarderbare/Diplom_MobileTestingAutomatization/blob/main/docs/allure_report.jpg)
 
 В процессе тестирования мобильного приложения "Мобильный хоспис" было выявлены дефекты.

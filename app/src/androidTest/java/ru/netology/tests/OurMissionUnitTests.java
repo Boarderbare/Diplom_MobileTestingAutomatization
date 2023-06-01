@@ -6,8 +6,6 @@ import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtP
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static org.hamcrest.Matchers.not;
 
-import android.os.SystemClock;
-
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -19,17 +17,15 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
-import ru.netology.pages.AuthPage;
-import ru.netology.pages.MainScreenPage;
+import ru.netology.data.ReadyScreen;
 import ru.netology.pages.OurMissionPage;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 
 public class OurMissionUnitTests {
-    AuthPage pageAuth = new AuthPage();
-    MainScreenPage mainScreenPage = new MainScreenPage();
     OurMissionPage ourMissionPage = new OurMissionPage();
+    ReadyScreen readyScreen = new ReadyScreen();
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
@@ -37,18 +33,7 @@ public class OurMissionUnitTests {
 
     @Before
     public void readyScreen() {
-        SystemClock.sleep(5000);
-        try {
-            mainScreenPage.checkMainScreenLoaded();
-            mainScreenPage.goOurMission();
-        } catch (Exception e) {
-            pageAuth.isAuthScreen();
-            pageAuth.login();
-            mainScreenPage.checkMainScreenLoaded();
-            mainScreenPage.goOurMission();
-        } finally {
-            ourMissionPage.checkOurMissionScreenLoaded();
-        }
+        readyScreen.readyAboutScreen();
     }
 
     @Test

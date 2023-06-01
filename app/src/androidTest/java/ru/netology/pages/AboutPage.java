@@ -37,4 +37,6 @@ public class AboutPage {
         companyInfo.check(matches(isDisplayed()));
         returnButton.check(matches(isDisplayed()));
     }
+
+
 }

@@ -35,6 +35,7 @@ public class AuthPage {
     int massageIdWrongAuth = R.string.wrong_login_or_password;
     int massageIdEmptyAuth = R.string.empty_login_or_password;
     MainScreenPage mainScreenPage = new MainScreenPage();
+    AuthPage authPage = new AuthPage();
 
     public void checkLoadScreen() {
         Allure.step("Проверка загрузки экрана авторизации");
@@ -51,6 +52,7 @@ public class AuthPage {
 
     public void login() {
         Allure.step("Login");
+//        isAuthScreen();
         enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
         enterPassword(DataHelper.AuthInfo.validAuth().getPass());
         signIn();

@@ -6,7 +6,6 @@ import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtP
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static org.hamcrest.Matchers.not;
 
-import android.os.SystemClock;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -18,6 +17,7 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
+import ru.netology.data.ReadyScreen;
 import ru.netology.pages.AboutPage;
 import ru.netology.pages.ClaimPage;
 import ru.netology.pages.ClaimsPage;
@@ -25,7 +25,6 @@ import ru.netology.pages.CreateClaimPage;
 import ru.netology.pages.MainScreenPage;
 import ru.netology.pages.NewsPage;
 import ru.netology.pages.OurMissionPage;
-import ru.netology.pages.AuthPage;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -33,12 +32,12 @@ import ru.netology.pages.AuthPage;
 public class MainPageUnitTest {
     OurMissionPage ourMission = new OurMissionPage();
     MainScreenPage mainScreenPage = new MainScreenPage();
-    AuthPage pageAuth = new AuthPage();
     NewsPage newsPage = new NewsPage();
     ClaimPage claimPage = new ClaimPage();
     ClaimsPage claimsPage = new ClaimsPage();
     CreateClaimPage createClaimPage = new CreateClaimPage();
     AboutPage aboutPage = new AboutPage();
+    ReadyScreen readyScreen = new ReadyScreen();
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
@@ -46,15 +45,7 @@ public class MainPageUnitTest {
 
     @Before
     public void readyScreen() {
-        SystemClock.sleep(10000);
-        try {
-            mainScreenPage.checkMainScreenLoaded();
-        } catch (Exception e) {
-            pageAuth.isAuthScreen();
-            pageAuth.login();
-        } finally {
-            mainScreenPage.checkMainScreenLoaded();
-        }
+        readyScreen.readyMainScreen();
     }
 
     @Test

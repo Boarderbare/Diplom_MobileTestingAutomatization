@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FMHAndroid">
 
+
         <activity
             android:name="ru.iteco.fmhandroid.ui.AppActivity"
             android:exported="true">

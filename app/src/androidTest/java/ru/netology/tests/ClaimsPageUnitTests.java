@@ -6,8 +6,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static org.junit.Assert.assertEquals;
 import static ru.netology.data.DataHelper.nestedScrollTo;
 
-import android.os.SystemClock;
-
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -21,22 +19,20 @@ import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 
 import ru.iteco.fmhandroid.ui.AppActivity;
-import ru.netology.pages.AuthPage;
+import ru.netology.data.ReadyScreen;
 import ru.netology.pages.ClaimPage;
 import ru.netology.pages.ClaimsPage;
 import ru.netology.pages.CreateClaimPage;
-import ru.netology.pages.MainScreenPage;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 
 public class ClaimsPageUnitTests {
-    MainScreenPage mainScreenPage = new MainScreenPage();
-    AuthPage pageAuth = new AuthPage();
     ClaimPage claimPage = new ClaimPage();
     ClaimsPage claimsPage = new ClaimsPage();
     CreateClaimPage createClaimPage = new CreateClaimPage();
     ClaimsPage.FilterClaimsWindow filterClaimsWindow = new ClaimsPage.FilterClaimsWindow();
+    ReadyScreen readyScreen = new ReadyScreen();
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
@@ -44,18 +40,7 @@ public class ClaimsPageUnitTests {
 
     @Before
     public void readyScreen() {
-        SystemClock.sleep(5000);
-        try {
-            mainScreenPage.checkMainScreenLoaded();
-            mainScreenPage.goToClaims();
-        } catch (Exception e) {
-            pageAuth.isAuthScreen();
-            pageAuth.login();
-            mainScreenPage.checkMainScreenLoaded();
-            mainScreenPage.goToClaims();
-        } finally {
-            claimsPage.checkClaimsScreenLoaded();
-        }
+        readyScreen.readyClaimsScreen();
     }
 
     @Test

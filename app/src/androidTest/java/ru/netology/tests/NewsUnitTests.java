@@ -12,8 +12,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-import android.os.SystemClock;
-
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -27,23 +25,21 @@ import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.netology.data.DataHelper;
+import ru.netology.data.ReadyScreen;
 import ru.netology.data.Resources;
-import ru.netology.pages.AuthPage;
 import ru.netology.pages.ControlPanelPage;
 import ru.netology.pages.FilterNewsPage;
-import ru.netology.pages.MainScreenPage;
 import ru.netology.pages.NewsPage;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 
 public class NewsUnitTests {
-    AuthPage pageAuth = new AuthPage();
-    MainScreenPage mainScreenPage = new MainScreenPage();
     NewsPage newsPage = new NewsPage();
     ControlPanelPage controlPanelPage = new ControlPanelPage();
     FilterNewsPage filterNewsPage = new FilterNewsPage();
     Resources resources = new Resources();
+    ReadyScreen readyScreen = new ReadyScreen();
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
@@ -51,18 +47,7 @@ public class NewsUnitTests {
 
     @Before
     public void readyScreen() {
-        SystemClock.sleep(5000);
-        try {
-            mainScreenPage.checkMainScreenLoaded();
-            mainScreenPage.goToNews();
-        } catch (Exception e) {
-            pageAuth.isAuthScreen();
-            pageAuth.login();
-            mainScreenPage.checkMainScreenLoaded();
-            mainScreenPage.goToNews();
-        } finally {
-            newsPage.checkNewsScreenLoaded();
-        }
+        readyScreen.readyNewsScreen();
     }
 
     String startDate = resources.startDate;

@@ -2,10 +2,7 @@ package ru.netology.tests;
 
 import static ru.netology.data.DataHelper.checkMessage;
 
-import android.os.SystemClock;
-
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import org.junit.Before;
@@ -20,9 +17,9 @@ import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.netology.data.DataHelper;
+import ru.netology.data.ReadyScreen;
 import ru.netology.pages.AuthPage;
 import ru.netology.pages.MainScreenPage;
-
 
 @LargeTest
 @RunWith(AllureAndroidJUnit4.class)
@@ -30,6 +27,7 @@ import ru.netology.pages.MainScreenPage;
 public class AuthUnitTest {
     AuthPage authPage = new AuthPage();
     MainScreenPage mainScreenPage = new MainScreenPage();
+    ReadyScreen readyScreen = new ReadyScreen();
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
@@ -37,14 +35,7 @@ public class AuthUnitTest {
 
     @Before
     public void readyScreen() {
-        SystemClock.sleep(10000);
-        try {
-            authPage.checkLoadScreen();
-            authPage.isAuthScreen();
-        } catch (Exception e) {
-            mainScreenPage.logOut();
-            authPage.isAuthScreen();
-        }
+        readyScreen.readyAuthScreen();
     }
 
     @Test

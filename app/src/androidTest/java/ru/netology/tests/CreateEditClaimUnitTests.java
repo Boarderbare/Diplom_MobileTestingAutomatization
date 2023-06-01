@@ -6,7 +6,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static ru.netology.data.DataHelper.nestedScrollTo;
 
-import android.os.SystemClock;
+
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -17,28 +17,25 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 
 import ru.iteco.fmhandroid.ui.AppActivity;
+import ru.netology.data.ReadyScreen;
 import ru.netology.data.Resources;
-import ru.netology.pages.AuthPage;
 import ru.netology.pages.ClaimPage;
 import ru.netology.pages.ClaimsPage;
 import ru.netology.pages.CreateClaimPage;
-import ru.netology.pages.MainScreenPage;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 
 public class CreateEditClaimUnitTests {
-    AuthPage pageAuth = new AuthPage();
-    MainScreenPage mainScreenPage = new MainScreenPage();
     ClaimsPage claimsPage = new ClaimsPage();
     ClaimPage claimPage = new ClaimPage();
     CreateClaimPage createClaimPage = new CreateClaimPage();
     ClaimsPage.FilterClaimsWindow filterClaimsWindow = new ClaimsPage.FilterClaimsWindow();
     Resources resources = new Resources();
+    ReadyScreen readyScreen = new ReadyScreen();
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
@@ -46,18 +43,7 @@ public class CreateEditClaimUnitTests {
 
     @Before
     public void readyScreen() {
-        SystemClock.sleep(5000);
-        try {
-            mainScreenPage.checkMainScreenLoaded();
-            mainScreenPage.goToClaims();
-        } catch (Exception e) {
-            pageAuth.isAuthScreen();
-            pageAuth.login();
-            mainScreenPage.checkMainScreenLoaded();
-            mainScreenPage.goToClaims();
-        } finally {
-            claimsPage.checkClaimsScreenLoaded();
-        }
+        readyScreen.readyClaimsScreen();
     }
 
     String title = resources.title;

@@ -52,7 +52,7 @@ public class AuthPage {
 
     public void login() {
         Allure.step("Login");
-//        isAuthScreen();
+        isAuthScreen();
         enterLogin(DataHelper.AuthInfo.validAuth().getLogin());
         enterPassword(DataHelper.AuthInfo.validAuth().getPass());
         signIn();

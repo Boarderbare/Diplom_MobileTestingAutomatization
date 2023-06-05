@@ -38,8 +38,6 @@ public class CreateEditNewsPage {
                         withChild(withChild(withText(title))))))));
     }
 
-    ControlPanelPage controlPanelPage = new ControlPanelPage();
-
     public void checkCreateNewsScreenLoaded() {
         Allure.step("Проверка загрузки экарана создания новости");
         elementWaiting(withText("Creating"), 5000);

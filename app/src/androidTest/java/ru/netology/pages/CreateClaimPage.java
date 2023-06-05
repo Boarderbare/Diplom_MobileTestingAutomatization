@@ -30,7 +30,6 @@ public class CreateClaimPage {
     public ViewInteraction claimDescriptionField = onView(withId(R.id.description_edit_text));
     public ViewInteraction saveButton = onView(withId(R.id.save_button));
     public ViewInteraction cancelButton = onView(withId(R.id.cancel_button));
-    ClaimPage claimPage = new ClaimPage();
 
     public void checkCreateClaimScreenLoaded() {
         Allure.step("Проверка загрузки экарана создания заявки");

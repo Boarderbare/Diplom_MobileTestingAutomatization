@@ -74,12 +74,6 @@ public class ClaimPage {
         createdLabel.check(matches(isDisplayed()));
         dateCreated.check(matches(isDisplayed()));
         timeCreated.check(matches(isDisplayed()));
-//      not displayed with long claims
-//       addCommentButton.check(matches(isDisplayed()));
-//       editingClaimButton.check(matches(isDisplayed()));
-//       statusChangeButton.check(matches(isDisplayed()));
-//       exitClaimButton.check(matches(isDisplayed()));
-//       exitClaimButton.check(matches(isDisplayed()));
     }
 
     public String getStatus() {
@@ -120,8 +114,6 @@ public class ClaimPage {
 
     public void checkClaimStatusLoaded() {
         Allure.step("Проверка отображения статуса заявки");
-//        elementWaiting(withId(R.id.status_icon_image_view), 5000);
-//        elementWaiting(withId(R.id.status_label_text_view), 5000);
         SystemClock.sleep(2000);
         status.check(matches(isDisplayed()));
     }

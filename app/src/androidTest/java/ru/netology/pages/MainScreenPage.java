@@ -88,9 +88,6 @@ public class MainScreenPage {
                             withId(R.id.all_claims_cards_block_constraint_layout),
                             4)));
 
-    NewsPage newsPage = new NewsPage();
-    ClaimsPage claimsPage = new ClaimsPage();
-
     public void checkMainScreenLoaded() {
         Allure.step("Проверка загрузки основного экраа");
         elementWaiting(withText("News"), 5000);

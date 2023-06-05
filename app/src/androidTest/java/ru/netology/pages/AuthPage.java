@@ -22,7 +22,6 @@ import ru.netology.data.DataHelper;
 import static ru.netology.data.DataHelper.*;
 
 public class AuthPage {
-    DataHelper dataHelper = new DataHelper();
     ViewInteraction screenName =
             onView(allOf(withText("Authorization"), withParent(withParent(withId(R.id.nav_host_fragment)))));
     ViewInteraction loginField =

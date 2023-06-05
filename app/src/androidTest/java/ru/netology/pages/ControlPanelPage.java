@@ -38,7 +38,7 @@ public class ControlPanelPage {
     public ViewInteraction newsDataPublished = onView(withIndex(withId(R.id.news_item_publication_date_text_view), 0));
     public ViewInteraction newsDataPCreated = onView(withIndex(withId(R.id.news_item_create_date_text_view), 0));
     public ViewInteraction newsCard = onView(withIndex(withId(R.id.news_item_material_card_view), 0));
-    //    public ViewInteraction deleteDialog = onView(
+//    public ViewInteraction deleteDialog = onView(
 //            withText("Are you sure you want to permanently delete the document? These changes cannot be reserved in the future."));
     public ViewInteraction cancelButton = onView(withText("CANCEL"));
     public ViewInteraction okButton = onView(withText("OK"));

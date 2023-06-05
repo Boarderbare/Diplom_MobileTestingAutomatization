@@ -15,8 +15,6 @@ import ru.iteco.fmhandroid.R;
 
 public class FilterNewsPage {
 
-    ControlPanelPage controlPanelPage = new ControlPanelPage();
-
     public ViewInteraction filterScreenName = onView(withId(R.id.filter_news_title_text_view));
     public ViewInteraction categoryField = onView(withId(R.id.news_item_category_text_auto_complete_text_view));
     public ViewInteraction categoryFieldButton = onView(withId(R.id.text_input_end_icon));

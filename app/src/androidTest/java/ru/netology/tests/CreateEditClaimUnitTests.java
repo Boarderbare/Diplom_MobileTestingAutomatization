@@ -17,6 +17,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 
 import ru.iteco.fmhandroid.ui.AppActivity;
@@ -56,6 +57,8 @@ public class CreateEditClaimUnitTests {
 
     @Test
     @DisplayName("29.Создание новой заявки")
+    @Description("Может падать, если в списке есть новость с ранней датой" +
+            "искать с прокруткой не получается")
     public void testCreateClaim() {
         claimsPage.createClaimButton.perform(click());
         createClaimPage.checkCreateClaimScreenLoaded();

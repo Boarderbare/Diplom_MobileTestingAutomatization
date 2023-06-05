@@ -173,6 +173,7 @@ public class NewsUnitTests {
 
     @Test
     @DisplayName("46. Control Panel: Удаление новости")
+    @Description("Может падать, если у соседних новостей Title одинаковый")
     public void testCpDeleteNews() {
         newsPage.goToControlPanel();
         String title = DataHelper.Text.getText(controlPanelPage.newsItemTitle);

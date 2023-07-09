@@ -1,5 +1,4 @@
 .gradle
-google-services.json
 build/
 app/release/
 
